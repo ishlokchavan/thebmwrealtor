@@ -19,7 +19,7 @@ export default function CountryCodeSelect({
           const next = COUNTRIES.find((c) => c.iso === e.target.value);
           if (next) onChange(next);
         }}
-        className="h-full appearance-none rounded-l-xl border border-r-0 border-slate-200 bg-slate-50 py-3.5 pl-3.5 pr-8 text-sm font-semibold text-ink transition focus:border-gold-300 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-200"
+        className="h-full appearance-none rounded-l-lg border border-r-0 border-slate-200 bg-slate-50 py-3.5 pl-3.5 pr-8 text-sm font-semibold text-ink transition focus:border-bmw-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-bmw-200"
       >
         {COUNTRIES.map((c) => (
           <option key={c.iso} value={c.iso}>

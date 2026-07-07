@@ -81,7 +81,7 @@ export default function PhotoUploader({
         {photos.map((photo) => (
           <div
             key={photo.id}
-            className="group relative aspect-square overflow-hidden rounded-xl border border-slate-200 bg-slate-100 shadow-soft"
+            className="group relative aspect-square overflow-hidden rounded-lg border border-slate-200 bg-slate-100 shadow-soft"
           >
             <Image
               src={photo.url}
@@ -107,7 +107,7 @@ export default function PhotoUploader({
             type="button"
             onClick={() => inputRef.current?.click()}
             disabled={uploading}
-            className="flex aspect-square flex-col items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-slate-300 text-slate-400 transition hover:border-gold-300 hover:bg-gold-100/30 hover:text-gold-500 disabled:opacity-50"
+            className="flex aspect-square flex-col items-center justify-center gap-1.5 rounded-lg border-2 border-dashed border-slate-300 text-slate-400 transition hover:border-bmw-400 hover:bg-bmw-50 hover:text-bmw-600 disabled:opacity-50"
           >
             <CameraIcon className="h-6 w-6" />
             <span className="text-[10px] font-semibold">

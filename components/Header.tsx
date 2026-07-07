@@ -8,15 +8,16 @@ const INSTAGRAM_URL =
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-night-950/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-carbon-950/85 backdrop-blur-xl">
+      <span className="m-stripe block h-0.5 w-full" aria-hidden="true" />
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-2.5">
           <Logo className="h-9 w-9" />
           <span className="leading-tight">
-            <span className="block font-serif text-[15px] font-semibold tracking-tight text-white">
+            <span className="block font-display text-[15px] font-bold uppercase tracking-tight text-white">
               The BMW Realtor
             </span>
-            <span className="block text-[10px] font-medium uppercase tracking-[0.18em] text-gold-300">
+            <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-bmw-300">
               Noida
             </span>
           </span>
@@ -27,14 +28,14 @@ export default function Header() {
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-gold-300 hover:text-gold-300"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-bmw-400 hover:text-bmw-300"
             aria-label="Follow on Instagram"
           >
             <InstagramIcon className="h-[18px] w-[18px]" />
           </a>
           <Link
             href="/list-property"
-            className="hidden rounded-full bg-gold-300 px-4 py-2 text-xs font-bold text-night-950 transition hover:bg-gold-200 sm:block"
+            className="hidden rounded-full bg-bmw-600 px-4 py-2 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-bmw-500 sm:block"
           >
             List Property
           </Link>

@@ -20,9 +20,9 @@ import type { CityRow, InquiryPhoto, StateRow } from "@/lib/types";
 const OTHER_VALUE = "__other__";
 
 const inputClass =
-  "w-full rounded-xl border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink placeholder:text-slate-400 transition focus:border-gold-300 focus:outline-none focus:ring-2 focus:ring-gold-200";
+  "w-full rounded-lg border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink placeholder:text-slate-400 transition focus:border-bmw-500 focus:outline-none focus:ring-2 focus:ring-bmw-200";
 const selectClass =
-  "w-full appearance-none rounded-xl border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink transition focus:border-gold-300 focus:outline-none focus:ring-2 focus:ring-gold-200";
+  "w-full appearance-none rounded-lg border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink transition focus:border-bmw-500 focus:outline-none focus:ring-2 focus:ring-bmw-200";
 const labelClass = "mb-1.5 block text-sm font-medium text-slate-700";
 
 export default function ListPropertyPage() {
@@ -162,8 +162,10 @@ export default function ListPropertyPage() {
       <Header />
 
       {/* Page intro */}
-      <div className="relative overflow-hidden bg-night-mesh text-white">
-        <div className="pointer-events-none absolute inset-0 grain opacity-[0.12]" />
+      <div className="relative overflow-hidden bg-carbon-mesh text-white">
+        <span className="m-stripe absolute left-0 top-0 h-1 w-full" aria-hidden="true" />
+        <div className="pointer-events-none absolute inset-0 tech-grid opacity-50" />
+        <div className="pointer-events-none absolute inset-0 grain opacity-[0.1]" />
         <div className="relative mx-auto max-w-2xl px-4 pb-10 pt-6">
           <Link
             href="/"
@@ -171,7 +173,7 @@ export default function ListPropertyPage() {
           >
             &larr; Back home
           </Link>
-          <h1 className="mt-4 font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
+          <h1 className="mt-4 font-display text-3xl font-extrabold uppercase tracking-tight sm:text-4xl">
             List your property
           </h1>
           <p className="mt-2 max-w-md text-sm text-white/70">
@@ -180,10 +182,10 @@ export default function ListPropertyPage() {
           </p>
           <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-xs text-white/60">
             <span className="inline-flex items-center gap-1.5">
-              <ShieldIcon className="h-4 w-4 text-gold-300" /> Private &amp; secure
+              <ShieldIcon className="h-4 w-4 text-bmw-300" /> Private &amp; secure
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <PhoneIcon className="h-4 w-4 text-gold-300" /> Verified brokers only
+              <PhoneIcon className="h-4 w-4 text-bmw-300" /> Verified brokers only
             </span>
           </div>
         </div>
@@ -197,7 +199,7 @@ export default function ListPropertyPage() {
           {/* Your details */}
           <section>
             <div className="flex items-center gap-2.5">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-night-950 text-gold-300">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-carbon-950 text-bmw-300">
                 <PhoneIcon className="h-4 w-4" />
               </span>
               <h2 className="text-sm font-bold uppercase tracking-wide text-ink">
@@ -232,7 +234,7 @@ export default function ListPropertyPage() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value.replace(/[^\d\s]/g, ""))}
                     placeholder="98765 43210"
-                    className="w-full rounded-r-xl border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink placeholder:text-slate-400 transition focus:border-gold-300 focus:outline-none focus:ring-2 focus:ring-gold-200"
+                    className="w-full rounded-r-lg border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink placeholder:text-slate-400 transition focus:border-bmw-500 focus:outline-none focus:ring-2 focus:ring-bmw-200"
                     required
                   />
                 </div>
@@ -245,7 +247,7 @@ export default function ListPropertyPage() {
           {/* Property details */}
           <section>
             <div className="flex items-center gap-2.5">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-night-950 text-gold-300">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-carbon-950 text-bmw-300">
                 <MapPinIcon className="h-4 w-4" />
               </span>
               <h2 className="text-sm font-bold uppercase tracking-wide text-ink">
@@ -393,7 +395,7 @@ export default function ListPropertyPage() {
           {/* Photos */}
           <section>
             <div className="flex items-center gap-2.5">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-night-950 text-gold-300">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-carbon-950 text-bmw-300">
                 <CameraIcon className="h-4 w-4" />
               </span>
               <h2 className="text-sm font-bold uppercase tracking-wide text-ink">
@@ -421,7 +423,7 @@ export default function ListPropertyPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="group mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-gold-300 py-4 text-sm font-bold text-night-950 shadow-glow transition hover:bg-gold-200 active:scale-[0.98] disabled:opacity-60"
+            className="group mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-bmw-600 py-4 text-sm font-bold uppercase tracking-wide text-white shadow-glow transition hover:bg-bmw-500 active:scale-[0.98] disabled:opacity-60"
           >
             {submitting ? "Submitting…" : "Submit Listing"}
             {!submitting && (

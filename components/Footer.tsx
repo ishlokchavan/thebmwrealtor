@@ -8,26 +8,28 @@ const INSTAGRAM_URL =
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-night-950 px-4 pb-10 pt-12 text-white safe-bottom">
+    <footer className="border-t border-white/10 bg-carbon-950 px-4 pb-10 pt-12 text-white safe-bottom">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div className="max-w-sm">
             <div className="flex items-center gap-2.5">
               <Logo className="h-9 w-9" />
-              <span className="font-serif text-lg font-semibold">
+              <span className="font-display text-lg font-bold uppercase tracking-tight">
                 The BMW Realtor
               </span>
             </div>
+            <span className="m-stripe mt-4 block h-1 w-14 rounded-full" aria-hidden="true" />
             <p className="mt-4 text-sm leading-relaxed text-white/55">
-              Connecting Noida property sellers with the city&apos;s top real
-              estate brokers. Free to list, no hidden charges, no spam.
+              The ultimate way to sell property in Noida. Connecting owners with
+              the city&apos;s top brokers — free to list, no hidden charges, no
+              spam.
             </p>
             <div className="mt-5 flex gap-3">
               <a
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-gold-300 hover:text-gold-300"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-bmw-400 hover:text-bmw-300"
                 aria-label="Instagram"
               >
                 <InstagramIcon className="h-[18px] w-[18px]" />
@@ -36,7 +38,7 @@ export default function Footer() {
                 href="https://wa.me/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-gold-300 hover:text-gold-300"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-bmw-400 hover:text-bmw-300"
                 aria-label="WhatsApp"
               >
                 <WhatsAppIcon className="h-[18px] w-[18px]" />
@@ -46,7 +48,7 @@ export default function Footer() {
 
           <div className="grid grid-cols-2 gap-10">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-300">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-bmw-300">
                 Company
               </p>
               <ul className="mt-4 space-y-2.5 text-sm text-white/60">
@@ -68,7 +70,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-300">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-bmw-300">
                 Get started
               </p>
               <ul className="mt-4 space-y-2.5 text-sm text-white/60">
@@ -89,7 +91,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} The BMW Realtor, Noida. All rights
             reserved.
           </p>
-          <p>Made for property owners across Noida.</p>
+          <p>The ultimate way to sell in Noida.</p>
         </div>
       </div>
     </footer>

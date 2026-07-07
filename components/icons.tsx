@@ -169,6 +169,17 @@ export function PhoneIcon({ className }: IconProps) {
   );
 }
 
+export function GaugeIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path d="M4 15a8 8 0 1 1 16 0" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M12 15l4-4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+      <circle cx="12" cy="15" r="1.5" fill="currentColor" />
+      <path d="M4 15h1.5M18.5 15H20M12 7v1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function BadgeIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">

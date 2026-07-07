@@ -1,29 +1,29 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
+import { Archivo, Inter } from "next/font/google";
 import "./globals.css";
 
-const jakarta = Plus_Jakarta_Sans({
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
 });
 
-const fraunces = Fraunces({
+const archivo = Archivo({
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-serif",
+  weight: ["500", "600", "700", "800", "900"],
+  variable: "--font-display",
 });
 
 export const metadata: Metadata = {
-  title: "The BMW Realtor | Sell Your Property in Noida",
+  title: "The BMW Realtor | The Ultimate Way to Sell in Noida",
   description:
-    "List your property in Noida and get connected with the top 10 brokers in the city. Sell your property in 60 days*.",
-  metadataBase: new URL("https://thebmwrealtor.vercel.app"),
+    "Engineered to sell your property in 60 days*. List once and get connected with the top 10 brokers of Noida — verified buyers, a faster close, zero spam.",
+  metadataBase: new URL("https://thebmwrealtor.com"),
   openGraph: {
-    title: "The BMW Realtor | Sell Your Property in Noida",
+    title: "The BMW Realtor | The Ultimate Way to Sell in Noida",
     description:
-      "List your property in Noida and get connected with the top 10 brokers in the city. Sell your property in 60 days*.",
+      "Engineered to sell your property in 60 days*. Get connected with the top 10 brokers of Noida.",
     type: "website",
   },
 };
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0a1330",
+  themeColor: "#0a0c10",
 };
 
 export default function RootLayout({
@@ -40,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${fraunces.variable}`}>
+    <html lang="en" className={`${inter.variable} ${archivo.variable}`}>
       <body className="min-h-screen bg-canvas font-sans text-ink antialiased">
         {children}
       </body>

@@ -12,15 +12,17 @@ export default function ThankYouPage() {
   return (
     <>
       <Header />
-      <main className="relative overflow-hidden bg-night-mesh">
-        <div className="pointer-events-none absolute inset-0 grain opacity-[0.12]" />
-        <div className="pointer-events-none absolute left-1/2 top-10 h-64 w-64 -translate-x-1/2 rounded-full bg-gold-400/20 blur-3xl" />
+      <main className="relative overflow-hidden bg-carbon-mesh">
+        <div className="pointer-events-none absolute inset-0 tech-grid opacity-50" />
+        <div className="pointer-events-none absolute inset-0 grain opacity-[0.1]" />
+        <div className="pointer-events-none absolute left-1/2 top-10 h-64 w-64 -translate-x-1/2 rounded-full bg-bmw-500/25 blur-3xl" />
 
         <div className="relative mx-auto flex min-h-[82vh] max-w-lg flex-col items-center justify-center px-4 py-16 text-center text-white">
-          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gold-300/15 text-gold-300 ring-1 ring-gold-300/30">
+          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-bmw-500/15 text-bmw-300 ring-1 ring-bmw-400/40">
             <CheckCircleIcon className="h-11 w-11" />
           </div>
-          <h1 className="mt-6 font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
+          <span className="m-stripe mt-6 block h-1 w-16 rounded-full" aria-hidden="true" />
+          <h1 className="mt-4 font-display text-3xl font-extrabold uppercase tracking-tight sm:text-4xl">
             Listing submitted!
           </h1>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/70">
@@ -32,9 +34,9 @@ export default function ThankYouPage() {
             {next.map((n) => (
               <li
                 key={n.text}
-                className="flex items-center gap-3 rounded-2xl glass px-4 py-3.5"
+                className="flex items-center gap-3 overflow-hidden rounded-xl glass px-4 py-3.5"
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gold-300 text-night-950">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-bmw-600 text-white">
                   <n.icon className="h-4.5 w-4.5" />
                 </span>
                 <span className="text-sm text-white/85">{n.text}</span>
@@ -44,7 +46,7 @@ export default function ThankYouPage() {
 
           <Link
             href="/"
-            className="group mt-9 inline-flex items-center gap-2 rounded-full bg-gold-300 px-7 py-4 text-sm font-bold text-night-950 shadow-glow transition hover:bg-gold-200 active:scale-[0.98]"
+            className="group mt-9 inline-flex items-center gap-2 rounded-full bg-bmw-600 px-7 py-4 text-sm font-bold uppercase tracking-wide text-white shadow-glow transition hover:bg-bmw-500 active:scale-[0.98]"
           >
             Back to Home
             <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-0.5" />

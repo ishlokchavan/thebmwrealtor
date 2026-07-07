@@ -28,7 +28,7 @@ export default function SkylineIllustration({ className }: { className?: string 
     >
       {buildings.map(([x, y, w, h], i) => (
         <g key={i}>
-          <rect x={x} y={y} width={w} height={h} rx="2" fill="#0a1330" opacity={0.55 + (i % 3) * 0.14} />
+          <rect x={x} y={y} width={w} height={h} rx="1" fill="#0a0c10" opacity={0.55 + (i % 3) * 0.14} />
           {Array.from({ length: Math.floor(h / 26) }).map((_, r) =>
             Array.from({ length: Math.max(1, Math.floor(w / 16)) }).map((__, c) => {
               const lit = (i * 7 + r * 3 + c * 5) % 5 === 0;
@@ -39,8 +39,8 @@ export default function SkylineIllustration({ className }: { className?: string 
                   y={y + 10 + r * 24}
                   width="6"
                   height="9"
-                  fill={lit ? "#e7c065" : "#1f2e63"}
-                  opacity={lit ? 0.9 : 0.5}
+                  fill={lit ? "#4ea3e0" : "#123566"}
+                  opacity={lit ? 0.95 : 0.5}
                 />
               );
             })
