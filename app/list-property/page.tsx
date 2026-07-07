@@ -20,9 +20,9 @@ import type { CityRow, InquiryPhoto, StateRow } from "@/lib/types";
 const OTHER_VALUE = "__other__";
 
 const inputClass =
-  "w-full rounded-lg border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink placeholder:text-slate-400 transition focus:border-bmw-500 focus:outline-none focus:ring-2 focus:ring-bmw-200";
+  "w-full rounded-lg border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink placeholder:text-slate-400 transition focus:border-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-200";
 const selectClass =
-  "w-full appearance-none rounded-lg border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink transition focus:border-bmw-500 focus:outline-none focus:ring-2 focus:ring-bmw-200";
+  "w-full appearance-none rounded-lg border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink transition focus:border-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-200";
 const labelClass = "mb-1.5 block text-sm font-medium text-slate-700";
 
 export default function ListPropertyPage() {
@@ -113,35 +113,35 @@ export default function ListPropertyPage() {
 
     setSubmitting(true);
     try {
-      const { data: inquiry, error: insertError } = await supabase
-        .from("inquiries")
-        .insert({
-          name: name.trim(),
-          country_dial_code: country.dialCode,
-          country_iso: country.iso,
-          phone: phone.trim(),
-          house_no: houseNo.trim() || null,
-          sector: sector.trim(),
-          block: block.trim() || null,
-          project_name: projectName.trim() || null,
-          city_id: cityId === OTHER_VALUE ? null : cityId,
-          city_name: cityName,
-          state_id: stateId === OTHER_VALUE ? null : stateId,
-          state_name: stateName,
-          country: "India",
-        })
-        .select("id")
-        .single();
+      // Generate the id client-side so we never need read access back:
+      // sellers can only INSERT, never SELECT other people's data (RLS).
+      const inquiryId = crypto.randomUUID();
 
-      if (insertError || !inquiry) {
-        throw new Error(insertError?.message ?? "Could not save your listing.");
+      const { error: insertError } = await supabase.from("inquiries").insert({
+        id: inquiryId,
+        name: name.trim(),
+        country_dial_code: country.dialCode,
+        country_iso: country.iso,
+        phone: phone.trim(),
+        house_no: houseNo.trim() || null,
+        sector: sector.trim(),
+        block: block.trim() || null,
+        project_name: projectName.trim() || null,
+        city_id: cityId === OTHER_VALUE ? null : cityId,
+        city_name: cityName,
+        state_id: stateId === OTHER_VALUE ? null : stateId,
+        state_name: stateName,
+        country: "India",
+      });
+
+      if (insertError) {
+        throw new Error(insertError.message || "Could not save your listing.");
       }
 
       if (photos.length > 0) {
         const { error: photosError } = await supabase.from("inquiry_photos").insert(
           photos.map((p) => ({
-            inquiry_id: inquiry.id,
-            url: p.url,
+            inquiry_id: inquiryId,
             storage_path: p.storagePath,
           }))
         );
@@ -163,7 +163,7 @@ export default function ListPropertyPage() {
 
       {/* Page intro */}
       <div className="relative overflow-hidden bg-carbon-mesh text-white">
-        <span className="m-stripe absolute left-0 top-0 h-1 w-full" aria-hidden="true" />
+        <span className="accent-line absolute left-0 top-0 h-1 w-full" aria-hidden="true" />
         <div className="pointer-events-none absolute inset-0 tech-grid opacity-50" />
         <div className="pointer-events-none absolute inset-0 grain opacity-[0.1]" />
         <div className="relative mx-auto max-w-2xl px-4 pb-10 pt-6">
@@ -177,29 +177,29 @@ export default function ListPropertyPage() {
             List your property
           </h1>
           <p className="mt-2 max-w-md text-sm text-white/70">
-            Takes under a minute. Our top Noida brokers will reach out to you
-            directly — free to list, no spam.
+            Takes under a minute. Your details go straight to our invite-only
+            network of Noida&apos;s top 10 brokers — free to list, no spam.
           </p>
           <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-xs text-white/60">
             <span className="inline-flex items-center gap-1.5">
-              <ShieldIcon className="h-4 w-4 text-bmw-300" /> Private &amp; secure
+              <ShieldIcon className="h-4 w-4 text-gold-300" /> Private &amp; secure
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <PhoneIcon className="h-4 w-4 text-bmw-300" /> Verified brokers only
+              <PhoneIcon className="h-4 w-4 text-gold-300" /> Verified brokers only
             </span>
           </div>
         </div>
       </div>
 
-      <main className="mx-auto -mt-6 max-w-2xl px-4 pb-24">
+      <main className="relative z-10 mx-auto -mt-8 max-w-2xl px-4 pb-28">
         <form
           onSubmit={handleSubmit}
-          className="rounded-2xl border border-slate-200/70 bg-white p-5 shadow-card sm:p-7"
+          className="rounded-2xl border border-slate-200/70 bg-white p-5 shadow-card sm:p-8"
         >
           {/* Your details */}
-          <section>
+          <section className="scroll-mt-24">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-carbon-950 text-bmw-300">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-carbon-950 text-gold-300">
                 <PhoneIcon className="h-4 w-4" />
               </span>
               <h2 className="text-sm font-bold uppercase tracking-wide text-ink">
@@ -234,7 +234,7 @@ export default function ListPropertyPage() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value.replace(/[^\d\s]/g, ""))}
                     placeholder="98765 43210"
-                    className="w-full rounded-r-lg border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink placeholder:text-slate-400 transition focus:border-bmw-500 focus:outline-none focus:ring-2 focus:ring-bmw-200"
+                    className="w-full rounded-r-lg border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink placeholder:text-slate-400 transition focus:border-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-200"
                     required
                   />
                 </div>
@@ -245,9 +245,9 @@ export default function ListPropertyPage() {
           <hr className="my-7 border-slate-100" />
 
           {/* Property details */}
-          <section>
+          <section className="scroll-mt-24">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-carbon-950 text-bmw-300">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-carbon-950 text-gold-300">
                 <MapPinIcon className="h-4 w-4" />
               </span>
               <h2 className="text-sm font-bold uppercase tracking-wide text-ink">
@@ -314,7 +314,7 @@ export default function ListPropertyPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <div>
                   <label htmlFor="state" className={labelClass}>
                     State
@@ -332,7 +332,7 @@ export default function ListPropertyPage() {
                           {s.name}
                         </option>
                       ))}
-                      <option value={OTHER_VALUE}>Other (type manually)</option>
+                      <option value={OTHER_VALUE}>Other</option>
                     </select>
                   </div>
                   {stateId === OTHER_VALUE && (
@@ -361,7 +361,7 @@ export default function ListPropertyPage() {
                         {c.name}
                       </option>
                     ))}
-                    <option value={OTHER_VALUE}>Other (type manually)</option>
+                    <option value={OTHER_VALUE}>Other</option>
                   </select>
                   {cityId === OTHER_VALUE && (
                     <input
@@ -393,9 +393,9 @@ export default function ListPropertyPage() {
           <hr className="my-7 border-slate-100" />
 
           {/* Photos */}
-          <section>
+          <section className="scroll-mt-24">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-carbon-950 text-bmw-300">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-carbon-950 text-gold-300">
                 <CameraIcon className="h-4 w-4" />
               </span>
               <h2 className="text-sm font-bold uppercase tracking-wide text-ink">
@@ -423,7 +423,7 @@ export default function ListPropertyPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="group mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-bmw-600 py-4 text-sm font-bold uppercase tracking-wide text-white shadow-glow transition hover:bg-bmw-500 active:scale-[0.98] disabled:opacity-60"
+            className="group mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-gold-400 py-4 text-sm font-bold uppercase tracking-wide text-carbon-950 shadow-glow transition hover:bg-gold-300 active:scale-[0.98] disabled:opacity-60"
           >
             {submitting ? "Submitting…" : "Submit Listing"}
             {!submitting && (

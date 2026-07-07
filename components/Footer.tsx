@@ -18,18 +18,18 @@ export default function Footer() {
                 The BMW Realtor
               </span>
             </div>
-            <span className="m-stripe mt-4 block h-1 w-14 rounded-full" aria-hidden="true" />
+            <span className="accent-line mt-4 block h-1 w-14 rounded-full" aria-hidden="true" />
             <p className="mt-4 text-sm leading-relaxed text-white/55">
-              The ultimate way to sell property in Noida. Connecting owners with
-              the city&apos;s top brokers — free to list, no hidden charges, no
-              spam.
+              Building massive wealth through Noida real estate. Connecting
+              owners with the city&apos;s top brokers — free to list, no hidden
+              charges, no spam.
             </p>
             <div className="mt-5 flex gap-3">
               <a
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-bmw-400 hover:text-bmw-300"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-gold-400 hover:text-gold-300"
                 aria-label="Instagram"
               >
                 <InstagramIcon className="h-[18px] w-[18px]" />
@@ -38,7 +38,7 @@ export default function Footer() {
                 href="https://wa.me/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-bmw-400 hover:text-bmw-300"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-gold-400 hover:text-gold-300"
                 aria-label="WhatsApp"
               >
                 <WhatsAppIcon className="h-[18px] w-[18px]" />
@@ -48,7 +48,7 @@ export default function Footer() {
 
           <div className="grid grid-cols-2 gap-10">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-bmw-300">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-300">
                 Company
               </p>
               <ul className="mt-4 space-y-2.5 text-sm text-white/60">
@@ -70,7 +70,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-bmw-300">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-300">
                 Get started
               </p>
               <ul className="mt-4 space-y-2.5 text-sm text-white/60">
@@ -79,8 +79,12 @@ export default function Footer() {
                     List a property
                   </Link>
                 </li>
+                <li>
+                  <Link href="/login" className="transition hover:text-white">
+                    Admin login
+                  </Link>
+                </li>
                 <li className="text-white/40">Noida · Greater Noida</li>
-                <li className="text-white/40">Uttar Pradesh, India</li>
               </ul>
             </div>
           </div>
@@ -88,10 +92,10 @@ export default function Footer() {
 
         <div className="mt-10 flex flex-col gap-2 border-t border-white/10 pt-6 text-[11px] text-white/40 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            &copy; {new Date().getFullYear()} The BMW Realtor, Noida. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} The BMW Realtor · Building Massive
+            Wealth. All rights reserved.
           </p>
-          <p>The ultimate way to sell in Noida.</p>
+          <p>Noida · Greater Noida · Uttar Pradesh, India</p>
         </div>
       </div>
     </footer>

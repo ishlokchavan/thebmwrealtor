@@ -16,14 +16,14 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "The BMW Realtor | The Ultimate Way to Sell in Noida",
+  title: "The BMW Realtor | Building Massive Wealth in Noida Real Estate",
   description:
-    "Engineered to sell your property in 60 days*. List once and get connected with the top 10 brokers of Noida — verified buyers, a faster close, zero spam.",
-  metadataBase: new URL("https://thebmwrealtor.com"),
+    "Sell your property in 60 days*. List once and get connected with the top 10 brokers of Noida — verified buyers, a faster close, and the best value for your property.",
+  metadataBase: new URL("https://buildingmassivewealth.com"),
   openGraph: {
-    title: "The BMW Realtor | The Ultimate Way to Sell in Noida",
+    title: "The BMW Realtor | Building Massive Wealth in Noida",
     description:
-      "Engineered to sell your property in 60 days*. Get connected with the top 10 brokers of Noida.",
+      "Sell your property in 60 days*. Get connected with the top 10 brokers of Noida.",
     type: "website",
   },
 };

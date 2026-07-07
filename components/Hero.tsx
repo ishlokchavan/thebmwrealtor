@@ -9,35 +9,36 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 tech-grid opacity-60" />
       <div className="pointer-events-none absolute inset-0 grain opacity-[0.12]" />
       <SkylineIllustration className="absolute inset-x-0 bottom-0 h-52 w-full opacity-90" />
-      <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-bmw-500/25 blur-3xl" />
-      <div className="pointer-events-none absolute -right-16 top-1/3 h-64 w-64 rounded-full bg-bmw-700/30 blur-3xl" />
+      <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-gold-500/25 blur-3xl" />
+      <div className="pointer-events-none absolute -right-16 top-1/3 h-64 w-64 rounded-full bg-gold-700/30 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl px-4 pb-24 pt-10 sm:pt-14 lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-10 lg:pb-28">
         {/* Copy */}
         <div className="animate-fade-up">
           <div className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 backdrop-blur">
-            <span className="m-stripe h-3.5 w-6 rounded-sm" aria-hidden="true" />
+            <span className="accent-line h-3.5 w-6 rounded-sm" aria-hidden="true" />
             <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/80">
-              The ultimate way to sell in Noida
+              Building Massive Wealth · Noida
             </span>
           </div>
 
           <h1 className="mt-5 font-display text-[2.7rem] font-extrabold uppercase leading-[0.98] tracking-tight sm:text-[4.2rem]">
             Sell your property in{" "}
-            <span className="text-gradient-blue">60 days</span>
-            <span className="align-super text-2xl text-bmw-300">*</span>
+            <span className="text-gradient-gold">60 days</span>
+            <span className="align-super text-2xl text-gold-300">*</span>
           </h1>
 
           <p className="mt-5 max-w-md text-base leading-relaxed text-white/70 sm:text-lg">
-            Engineered to connect you with the{" "}
+            List once and get connected with the{" "}
             <span className="font-semibold text-white">top 10 brokers of Noida</span>
-            . Verified buyers, a faster close, zero spam.
+            . Verified buyers, a faster close, and the best value for your
+            property.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
               href="/list-property"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-bmw-600 px-7 py-4 text-sm font-bold uppercase tracking-wide text-white shadow-glow transition hover:bg-bmw-500 active:scale-[0.98]"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-gold-400 px-7 py-4 text-sm font-bold uppercase tracking-wide text-carbon-950 shadow-glow transition hover:bg-gold-300 active:scale-[0.98]"
             >
               List Your Property — Free
               <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-0.5" />
@@ -76,7 +77,7 @@ export default function Hero() {
               <div className="flex items-center gap-3">
                 <span className="flex items-center gap-1">
                   {[0, 1, 2, 3, 4].map((i) => (
-                    <StarIcon key={i} className="h-3 w-3 text-bmw-300" />
+                    <StarIcon key={i} className="h-3 w-3 text-gold-300" />
                   ))}
                 </span>
                 <p className="text-xs leading-tight text-white/80">

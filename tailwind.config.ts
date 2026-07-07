@@ -8,41 +8,35 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        canvas: "#f4f5f7",
-        ink: "#0a0c10",
-        // Carbon — cool near-black used for dark sections
+        canvas: "#f6f4ef",
+        ink: "#14120d",
+        // Obsidian — warm near-black used for premium dark sections
         carbon: {
-          50: "#eceef2",
-          100: "#d5d9e1",
-          200: "#aab2c1",
-          300: "#7d879c",
-          400: "#525d73",
-          500: "#333c4d",
-          600: "#232a37",
-          700: "#181d27",
-          800: "#12161f",
-          900: "#0d1017",
-          950: "#0a0c10",
+          50: "#f3f1ea",
+          100: "#ded9cc",
+          200: "#c1b9a4",
+          300: "#9a8f78",
+          400: "#6f6552",
+          500: "#4e4738",
+          600: "#3a352a",
+          700: "#29251d",
+          800: "#1b1813",
+          900: "#12100c",
+          950: "#0b0a07",
         },
-        // BMW blue — primary brand + CTA
-        bmw: {
-          50: "#e9f2fd",
-          100: "#cee0fa",
-          200: "#9dc2f4",
-          300: "#6ba2ee",
-          400: "#3f85e6",
-          500: "#1c69d4",
-          600: "#0f57c0",
-          700: "#0b459b",
-          800: "#0c3a7d",
-          900: "#0c2f61",
-          950: "#071c3d",
-        },
-        // BMW M motorsport tricolor
-        m: {
-          light: "#4ea3e0",
-          blue: "#16588e",
-          red: "#e4002b",
+        // Gold — wealth accent + CTA
+        gold: {
+          50: "#fbf7ec",
+          100: "#f6edcf",
+          200: "#eeda9f",
+          300: "#e4c66d",
+          400: "#d4af37",
+          500: "#bd982f",
+          600: "#9c7826",
+          700: "#7c5d20",
+          800: "#634a1e",
+          900: "#523d1c",
+          950: "#2f210c",
         },
       },
       fontFamily: {
@@ -50,16 +44,14 @@ const config: Config = {
         display: ["var(--font-display)", "var(--font-sans)", "sans-serif"],
       },
       boxShadow: {
-        soft: "0 2px 8px -2px rgba(10, 12, 16, 0.08)",
-        card: "0 18px 45px -20px rgba(7, 28, 61, 0.35)",
-        glow: "0 18px 50px -16px rgba(28, 105, 212, 0.55)",
-        float: "0 30px 70px -28px rgba(7, 20, 45, 0.65)",
+        soft: "0 2px 8px -2px rgba(20, 18, 13, 0.08)",
+        card: "0 18px 45px -20px rgba(20, 18, 13, 0.4)",
+        glow: "0 18px 50px -16px rgba(212, 175, 55, 0.5)",
+        float: "0 30px 70px -28px rgba(11, 10, 7, 0.7)",
       },
       backgroundImage: {
         "carbon-mesh":
-          "radial-gradient(115% 90% at 12% 0%, #123566 0%, transparent 55%), radial-gradient(120% 110% at 92% 8%, #0d2f63 0%, transparent 52%), linear-gradient(180deg, #0d1017 0%, #0a0c10 100%)",
-        "m-stripe":
-          "linear-gradient(90deg, #4ea3e0 0 33.33%, #16588e 33.33% 66.66%, #e4002b 66.66% 100%)",
+          "radial-gradient(110% 90% at 12% 0%, rgba(212,175,55,0.14) 0%, transparent 55%), radial-gradient(120% 110% at 92% 8%, rgba(212,175,55,0.08) 0%, transparent 52%), linear-gradient(180deg, #12100c 0%, #0b0a07 100%)",
       },
       keyframes: {
         "fade-up": {
