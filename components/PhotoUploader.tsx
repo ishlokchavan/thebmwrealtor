@@ -77,11 +77,11 @@ export default function PhotoUploader({
 
   return (
     <div>
-      <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+      <div className="grid grid-cols-3 gap-2.5 sm:grid-cols-4">
         {photos.map((photo) => (
           <div
             key={photo.id}
-            className="group relative aspect-square overflow-hidden rounded-lg border border-slate-200 bg-slate-100"
+            className="group relative aspect-square overflow-hidden rounded-xl border border-slate-200 bg-slate-100 shadow-soft"
           >
             <Image
               src={photo.url}
@@ -90,10 +90,11 @@ export default function PhotoUploader({
               sizes="120px"
               className="object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition group-hover:opacity-100" />
             <button
               type="button"
               onClick={() => handleRemove(photo)}
-              className="absolute right-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-black/60 text-white"
+              className="absolute right-1.5 top-1.5 flex h-7 w-7 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur transition hover:bg-red-500"
               aria-label="Remove photo"
             >
               <TrashIcon className="h-3.5 w-3.5" />
@@ -106,10 +107,10 @@ export default function PhotoUploader({
             type="button"
             onClick={() => inputRef.current?.click()}
             disabled={uploading}
-            className="flex aspect-square flex-col items-center justify-center gap-1 rounded-lg border border-dashed border-slate-300 text-slate-400 transition hover:border-brand-400 hover:text-brand-500 disabled:opacity-50"
+            className="flex aspect-square flex-col items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-slate-300 text-slate-400 transition hover:border-gold-300 hover:bg-gold-100/30 hover:text-gold-500 disabled:opacity-50"
           >
-            <CameraIcon className="h-5 w-5" />
-            <span className="text-[10px] font-medium">
+            <CameraIcon className="h-6 w-6" />
+            <span className="text-[10px] font-semibold">
               {uploading ? "Uploading…" : "Add photo"}
             </span>
           </button>
@@ -126,11 +127,11 @@ export default function PhotoUploader({
         onChange={(e) => handleFiles(e.target.files)}
       />
 
-      <p className="mt-2 text-[11px] text-slate-400">
-        Optional — up to {MAX_PHOTOS} photos, {MAX_FILE_MB}MB each. Listings
-        with photos get more broker attention.
+      <p className="mt-3 text-xs text-slate-400">
+        Optional — up to {MAX_PHOTOS} photos, {MAX_FILE_MB}MB each. Listings with
+        photos get noticeably more broker interest.
       </p>
-      {error && <p className="mt-1 text-[11px] text-red-500">{error}</p>}
+      {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
     </div>
   );
 }

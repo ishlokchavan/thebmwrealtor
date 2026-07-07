@@ -1,51 +1,74 @@
-import { CameraIcon, CheckCircleIcon, UsersIcon } from "./icons";
+import Link from "next/link";
+import { ArrowRightIcon, CameraIcon, HomeIcon, UsersIcon } from "./icons";
 
 const steps = [
   {
-    icon: CameraIcon,
+    icon: HomeIcon,
     title: "Share your property",
-    desc: "Fill a 1-minute form with your property & contact details. Photos are optional but help you sell faster.",
+    desc: "Fill a 60-second form with your property and contact details. Add photos to stand out (optional).",
   },
   {
     icon: UsersIcon,
-    title: "We match you with brokers",
-    desc: "Your listing is shared with Noida's top 10 verified brokers who specialize in your sector.",
+    title: "We match top brokers",
+    desc: "Your listing is routed to the top 10 verified brokers who actively work in your sector.",
   },
   {
-    icon: CheckCircleIcon,
-    title: "Close the deal",
-    desc: "Brokers reach out directly, arrange visits, and help you close — usually within 60 days*.",
+    icon: CameraIcon,
+    title: "Close with confidence",
+    desc: "Brokers bring serious buyers, arrange visits, and help you close — usually within 60 days*.",
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section className="mx-auto max-w-5xl px-4 py-10">
-      <h2 className="text-xl font-bold text-slate-900">How it works</h2>
-      <p className="mt-1 text-sm text-slate-500">
-        Three simple steps to get your property in front of serious buyers.
-      </p>
-      <ol className="mt-6 space-y-4">
-        {steps.map((step, i) => (
-          <li
-            key={step.title}
-            className="flex gap-4 rounded-2xl border border-slate-100 bg-white p-4 shadow-card"
+    <section
+      id="how-it-works"
+      className="relative overflow-hidden bg-night-mesh py-16 text-white sm:py-24"
+    >
+      <div className="pointer-events-none absolute inset-0 grain opacity-[0.12]" />
+      <div className="pointer-events-none absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gold-line" />
+
+      <div className="relative mx-auto max-w-6xl px-4">
+        <div className="max-w-xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-300">
+            Simple process
+          </p>
+          <h2 className="mt-2 font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
+            Three steps to a sold sign
+          </h2>
+        </div>
+
+        <ol className="relative mt-12 grid gap-6 sm:grid-cols-3">
+          {steps.map((step, i) => (
+            <li key={step.title} className="relative">
+              <div className="rounded-2xl glass p-6">
+                <div className="flex items-center justify-between">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gold-300 text-night-950">
+                    <step.icon className="h-6 w-6" />
+                  </span>
+                  <span className="font-serif text-4xl font-semibold text-white/15">
+                    0{i + 1}
+                  </span>
+                </div>
+                <h3 className="mt-5 text-lg font-bold">{step.title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-white/60">
+                  {step.desc}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <div className="mt-10">
+          <Link
+            href="/list-property"
+            className="group inline-flex items-center gap-2 rounded-full bg-gold-300 px-7 py-4 text-sm font-bold text-night-950 shadow-glow transition hover:bg-gold-200 active:scale-[0.98]"
           >
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
-              <step.icon className="h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-xs font-semibold text-brand-500">
-                Step {i + 1}
-              </p>
-              <h3 className="text-sm font-bold text-slate-900">
-                {step.title}
-              </h3>
-              <p className="mt-0.5 text-sm text-slate-500">{step.desc}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
+            Start your free listing
+            <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-0.5" />
+          </Link>
+        </div>
+      </div>
     </section>
   );
 }

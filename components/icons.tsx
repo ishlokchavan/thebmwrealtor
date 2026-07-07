@@ -1,11 +1,8 @@
-export function InstagramIcon({ className }: { className?: string }) {
+type IconProps = { className?: string };
+
+export function InstagramIcon({ className }: IconProps) {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      className={className}
-      aria-hidden="true"
-    >
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
       <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="currentColor" strokeWidth="1.7" />
       <circle cx="12" cy="12" r="4.3" stroke="currentColor" strokeWidth="1.7" />
       <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" />
@@ -13,7 +10,7 @@ export function InstagramIcon({ className }: { className?: string }) {
   );
 }
 
-export function WhatsAppIcon({ className }: { className?: string }) {
+export function WhatsAppIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
       <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.63 1.44 5.15L2 22l5.09-1.55a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.06h-.01a8.18 8.18 0 0 1-4.16-1.14l-.3-.18-3.02.92.93-2.94-.2-.31a8.14 8.14 0 0 1-1.26-4.5c0-4.51 3.68-8.19 8.2-8.19 2.19 0 4.25.85 5.79 2.4a8.13 8.13 0 0 1 2.4 5.8c0 4.51-3.68 8.14-8.17 8.14Zm4.48-6.12c-.24-.12-1.44-.71-1.67-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.53.06-.24-.12-1.02-.38-1.95-1.21-.72-.64-1.2-1.44-1.35-1.68-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.05.14-1.16-.06-.1-.22-.16-.46-.28Z" />
@@ -21,7 +18,7 @@ export function WhatsAppIcon({ className }: { className?: string }) {
   );
 }
 
-export function CameraIcon({ className }: { className?: string }) {
+export function CameraIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
       <path
@@ -35,7 +32,7 @@ export function CameraIcon({ className }: { className?: string }) {
   );
 }
 
-export function TrashIcon({ className }: { className?: string }) {
+export function TrashIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
       <path
@@ -49,7 +46,7 @@ export function TrashIcon({ className }: { className?: string }) {
   );
 }
 
-export function ChevronDownIcon({ className }: { className?: string }) {
+export function ChevronDownIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
       <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -57,7 +54,7 @@ export function ChevronDownIcon({ className }: { className?: string }) {
   );
 }
 
-export function CheckCircleIcon({ className }: { className?: string }) {
+export function CheckCircleIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
       <circle cx="12" cy="12" r="9.5" stroke="currentColor" strokeWidth="1.6" />
@@ -66,7 +63,7 @@ export function CheckCircleIcon({ className }: { className?: string }) {
   );
 }
 
-export function ShieldIcon({ className }: { className?: string }) {
+export function ShieldIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
       <path
@@ -80,7 +77,7 @@ export function ShieldIcon({ className }: { className?: string }) {
   );
 }
 
-export function ClockIcon({ className }: { className?: string }) {
+export function ClockIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
       <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
@@ -89,13 +86,99 @@ export function ClockIcon({ className }: { className?: string }) {
   );
 }
 
-export function UsersIcon({ className }: { className?: string }) {
+export function UsersIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
       <circle cx="9" cy="8.5" r="3" stroke="currentColor" strokeWidth="1.6" />
       <path d="M3.5 19c.7-3 2.9-4.8 5.5-4.8s4.8 1.8 5.5 4.8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
       <circle cx="16.5" cy="9" r="2.4" stroke="currentColor" strokeWidth="1.5" />
       <path d="M15 14.6c2.1.2 3.8 1.7 4.3 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function StarIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M12 2.6l2.65 5.7 6.25.74-4.6 4.27 1.22 6.16L12 16.9l-5.52 2.98 1.22-6.16-4.6-4.27 6.25-.74L12 2.6Z" />
+    </svg>
+  );
+}
+
+export function ArrowRightIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function KeyIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <circle cx="8" cy="8" r="4.2" stroke="currentColor" strokeWidth="1.6" />
+      <path d="m11 11 8 8m-3 0 2-2m-4-2 2-2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function HomeIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4v-5h-6v5H5a1 1 0 0 1-1-1v-8.5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function MapPinIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <circle cx="12" cy="10" r="2.6" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  );
+}
+
+export function SparkleIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M12 2c.3 3.9 2.1 5.7 6 6-3.9.3-5.7 2.1-6 6-.3-3.9-2.1-5.7-6-6 3.9-.3 5.7-2.1 6-6Z" />
+      <path d="M19 13c.15 1.7.95 2.5 2.6 2.65-1.65.15-2.45.95-2.6 2.6-.15-1.65-.95-2.45-2.6-2.6 1.65-.15 2.45-.95 2.6-2.65Z" opacity="0.7" />
+    </svg>
+  );
+}
+
+export function QuoteIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M9.5 6C6.5 7 5 9.3 5 12.9V18h5v-5H7.6c0-2 .8-3.3 2.6-4L9.5 6Zm9 0c-3 1-4.5 3.3-4.5 6.9V18h5v-5h-2.4c0-2 .8-3.3 2.6-4L18.5 6Z" />
+    </svg>
+  );
+}
+
+export function PhoneIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M6.5 4h3l1.3 4-2 1.4a11 11 0 0 0 5.3 5.3l1.4-2 4 1.3v3a1.7 1.7 0 0 1-1.8 1.7A14.5 14.5 0 0 1 4.8 5.8 1.7 1.7 0 0 1 6.5 4Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function BadgeIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path
+        d="m12 3 2.1 1.5 2.5-.3 1 2.3 2.3 1-.3 2.5L21 15l-1.5 2.1.3 2.5-2.3 1-1 2.3-2.5-.3L12 24l-2.1-1.5-2.5.3-1-2.3-2.3-1 .3-2.5L3 15l1.5-2.1-.3-2.5 2.3-1 1-2.3 2.5.3L12 3Z"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinejoin="round"
+      />
+      <path d="m9.2 12 1.9 1.9 3.7-3.9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }

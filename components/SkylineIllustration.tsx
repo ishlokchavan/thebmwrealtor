@@ -1,28 +1,51 @@
 export default function SkylineIllustration({ className }: { className?: string }) {
+  const buildings: [number, number, number, number][] = [
+    [0, 150, 46, 150],
+    [44, 108, 40, 192],
+    [86, 168, 38, 132],
+    [122, 78, 48, 222],
+    [170, 128, 40, 172],
+    [210, 52, 52, 248],
+    [262, 120, 42, 180],
+    [304, 92, 46, 208],
+    [350, 158, 40, 142],
+    [390, 68, 50, 232],
+    [440, 138, 42, 162],
+    [482, 100, 48, 200],
+    [530, 164, 40, 136],
+    [570, 84, 50, 216],
+    [620, 130, 44, 170],
+    [664, 110, 46, 190],
+    [710, 156, 40, 144],
+    [750, 96, 50, 204],
+  ];
   return (
-    <svg viewBox="0 0 800 300" preserveAspectRatio="xMidYMax slice" className={className} aria-hidden="true">
-      <defs>
-        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#1b3a8a" />
-          <stop offset="100%" stopColor="#0b1740" />
-        </linearGradient>
-      </defs>
-      <rect width="800" height="300" fill="url(#sky)" />
-      {[
-        [10, 140, 60, 160],
-        [80, 100, 55, 200],
-        [145, 160, 50, 140],
-        [205, 70, 65, 230],
-        [280, 120, 50, 180],
-        [340, 40, 70, 260],
-        [420, 110, 55, 190],
-        [485, 85, 60, 215],
-        [555, 150, 50, 150],
-        [615, 60, 65, 240],
-        [690, 130, 55, 170],
-        [755, 95, 45, 205],
-      ].map(([x, y, w, h], i) => (
-        <rect key={i} x={x} y={y} width={w} height={h} fill="#ffffff" opacity={0.06 + (i % 3) * 0.03} rx="2" />
+    <svg
+      viewBox="0 0 800 300"
+      preserveAspectRatio="xMidYMax slice"
+      className={className}
+      aria-hidden="true"
+    >
+      {buildings.map(([x, y, w, h], i) => (
+        <g key={i}>
+          <rect x={x} y={y} width={w} height={h} rx="2" fill="#0a1330" opacity={0.55 + (i % 3) * 0.14} />
+          {Array.from({ length: Math.floor(h / 26) }).map((_, r) =>
+            Array.from({ length: Math.max(1, Math.floor(w / 16)) }).map((__, c) => {
+              const lit = (i * 7 + r * 3 + c * 5) % 5 === 0;
+              return (
+                <rect
+                  key={`${r}-${c}`}
+                  x={x + 5 + c * 15}
+                  y={y + 10 + r * 24}
+                  width="6"
+                  height="9"
+                  fill={lit ? "#e7c065" : "#1f2e63"}
+                  opacity={lit ? 0.9 : 0.5}
+                />
+              );
+            })
+          )}
+        </g>
       ))}
     </svg>
   );

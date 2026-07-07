@@ -1,5 +1,19 @@
 import type { Metadata, Viewport } from "next";
+import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-serif",
+});
 
 export const metadata: Metadata = {
   title: "The BMW Realtor | Sell Your Property in Noida",
@@ -17,8 +31,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  themeColor: "#0b1740",
+  themeColor: "#0a1330",
 };
 
 export default function RootLayout({
@@ -27,8 +40,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen bg-white font-sans text-slate-900 antialiased">
+    <html lang="en" className={`${jakarta.variable} ${fraunces.variable}`}>
+      <body className="min-h-screen bg-canvas font-sans text-ink antialiased">
         {children}
       </body>
     </html>

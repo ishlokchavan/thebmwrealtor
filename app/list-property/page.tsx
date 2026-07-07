@@ -6,11 +6,24 @@ import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import CountryCodeSelect from "@/components/CountryCodeSelect";
 import PhotoUploader from "@/components/PhotoUploader";
+import {
+  ArrowRightIcon,
+  CameraIcon,
+  MapPinIcon,
+  PhoneIcon,
+  ShieldIcon,
+} from "@/components/icons";
 import { DEFAULT_COUNTRY, type Country } from "@/lib/countries";
 import { supabase } from "@/lib/supabase";
 import type { CityRow, InquiryPhoto, StateRow } from "@/lib/types";
 
 const OTHER_VALUE = "__other__";
+
+const inputClass =
+  "w-full rounded-xl border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink placeholder:text-slate-400 transition focus:border-gold-300 focus:outline-none focus:ring-2 focus:ring-gold-200";
+const selectClass =
+  "w-full appearance-none rounded-xl border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink transition focus:border-gold-300 focus:outline-none focus:ring-2 focus:ring-gold-200";
+const labelClass = "mb-1.5 block text-sm font-medium text-slate-700";
 
 export default function ListPropertyPage() {
   const router = useRouter();
@@ -147,213 +160,260 @@ export default function ListPropertyPage() {
   return (
     <>
       <Header />
-      <main className="mx-auto max-w-lg px-4 pb-16 pt-6">
-        <Link
-          href="/"
-          className="text-xs font-medium text-brand-500 hover:underline"
+
+      {/* Page intro */}
+      <div className="relative overflow-hidden bg-night-mesh text-white">
+        <div className="pointer-events-none absolute inset-0 grain opacity-[0.12]" />
+        <div className="relative mx-auto max-w-2xl px-4 pb-10 pt-6">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1 text-xs font-medium text-white/60 transition hover:text-white"
+          >
+            &larr; Back home
+          </Link>
+          <h1 className="mt-4 font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
+            List your property
+          </h1>
+          <p className="mt-2 max-w-md text-sm text-white/70">
+            Takes under a minute. Our top Noida brokers will reach out to you
+            directly — free to list, no spam.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-xs text-white/60">
+            <span className="inline-flex items-center gap-1.5">
+              <ShieldIcon className="h-4 w-4 text-gold-300" /> Private &amp; secure
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <PhoneIcon className="h-4 w-4 text-gold-300" /> Verified brokers only
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <main className="mx-auto -mt-6 max-w-2xl px-4 pb-24">
+        <form
+          onSubmit={handleSubmit}
+          className="rounded-2xl border border-slate-200/70 bg-white p-5 shadow-card sm:p-7"
         >
-          &larr; Back home
-        </Link>
-
-        <h1 className="mt-3 text-2xl font-extrabold text-slate-900">
-          List your property
-        </h1>
-        <p className="mt-1 text-sm text-slate-500">
-          Takes under a minute. Our top Noida brokers will reach out to you
-          directly.
-        </p>
-
-        <form onSubmit={handleSubmit} className="mt-6 space-y-6">
-          <fieldset className="space-y-4">
-            <legend className="text-xs font-bold uppercase tracking-wide text-brand-500">
-              Your details
-            </legend>
-
-            <div>
-              <label htmlFor="name" className="mb-1 block text-sm font-medium text-slate-700">
-                Full name
-              </label>
-              <input
-                id="name"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="e.g. Ramesh Sharma"
-                className="w-full rounded-xl border border-slate-200 px-3.5 py-3.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
-                required
-              />
+          {/* Your details */}
+          <section>
+            <div className="flex items-center gap-2.5">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-night-950 text-gold-300">
+                <PhoneIcon className="h-4 w-4" />
+              </span>
+              <h2 className="text-sm font-bold uppercase tracking-wide text-ink">
+                Your details
+              </h2>
             </div>
-
-            <div>
-              <label htmlFor="phone" className="mb-1 block text-sm font-medium text-slate-700">
-                Phone number
-              </label>
-              <div className="flex">
-                <CountryCodeSelect value={country} onChange={setCountry} />
+            <div className="mt-4 space-y-4">
+              <div>
+                <label htmlFor="name" className={labelClass}>
+                  Full name
+                </label>
                 <input
-                  id="phone"
-                  type="tel"
-                  inputMode="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value.replace(/[^\d\s]/g, ""))}
-                  placeholder="98765 43210"
-                  className="w-full rounded-r-xl border border-slate-200 px-3.5 py-3.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+                  id="name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="e.g. Ramesh Sharma"
+                  className={inputClass}
                   required
                 />
               </div>
-            </div>
-          </fieldset>
-
-          <fieldset className="space-y-4">
-            <legend className="text-xs font-bold uppercase tracking-wide text-brand-500">
-              Property details
-            </legend>
-
-            <div className="grid grid-cols-2 gap-3">
               <div>
-                <label htmlFor="houseNo" className="mb-1 block text-sm font-medium text-slate-700">
-                  House No.
+                <label htmlFor="phone" className={labelClass}>
+                  Phone number
                 </label>
-                <input
-                  id="houseNo"
-                  type="text"
-                  value={houseNo}
-                  onChange={(e) => setHouseNo(e.target.value)}
-                  placeholder="B-204"
-                  className="w-full rounded-xl border border-slate-200 px-3.5 py-3.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
-                />
-              </div>
-              <div>
-                <label htmlFor="sector" className="mb-1 block text-sm font-medium text-slate-700">
-                  Sector
-                </label>
-                <input
-                  id="sector"
-                  type="text"
-                  value={sector}
-                  onChange={(e) => setSector(e.target.value)}
-                  placeholder="Sector 62"
-                  className="w-full rounded-xl border border-slate-200 px-3.5 py-3.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label htmlFor="block" className="mb-1 block text-sm font-medium text-slate-700">
-                  Block
-                </label>
-                <input
-                  id="block"
-                  type="text"
-                  value={block}
-                  onChange={(e) => setBlock(e.target.value)}
-                  placeholder="C"
-                  className="w-full rounded-xl border border-slate-200 px-3.5 py-3.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
-                />
-              </div>
-              <div>
-                <label htmlFor="projectName" className="mb-1 block text-sm font-medium text-slate-700">
-                  Project / Society
-                </label>
-                <input
-                  id="projectName"
-                  type="text"
-                  value={projectName}
-                  onChange={(e) => setProjectName(e.target.value)}
-                  placeholder="Amrapali Sapphire"
-                  className="w-full rounded-xl border border-slate-200 px-3.5 py-3.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label htmlFor="state" className="mb-1 block text-sm font-medium text-slate-700">
-                  State
-                </label>
-                <select
-                  id="state"
-                  value={stateId}
-                  onChange={(e) => setStateId(e.target.value)}
-                  disabled={locationsLoading}
-                  className="w-full appearance-none rounded-xl border border-slate-200 bg-white px-3.5 py-3.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
-                >
-                  {states.map((s) => (
-                    <option key={s.id} value={s.id}>
-                      {s.name}
-                    </option>
-                  ))}
-                  <option value={OTHER_VALUE}>Other (type manually)</option>
-                </select>
-                {stateId === OTHER_VALUE && (
+                <div className="flex">
+                  <CountryCodeSelect value={country} onChange={setCountry} />
                   <input
-                    type="text"
-                    value={customState}
-                    onChange={(e) => setCustomState(e.target.value)}
-                    placeholder="Enter state"
-                    className="mt-2 w-full rounded-xl border border-slate-200 px-3.5 py-3 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+                    id="phone"
+                    type="tel"
+                    inputMode="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value.replace(/[^\d\s]/g, ""))}
+                    placeholder="98765 43210"
+                    className="w-full rounded-r-xl border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink placeholder:text-slate-400 transition focus:border-gold-300 focus:outline-none focus:ring-2 focus:ring-gold-200"
+                    required
                   />
-                )}
-              </div>
-              <div>
-                <label htmlFor="city" className="mb-1 block text-sm font-medium text-slate-700">
-                  City
-                </label>
-                <select
-                  id="city"
-                  value={cityId}
-                  onChange={(e) => setCityId(e.target.value)}
-                  disabled={locationsLoading}
-                  className="w-full appearance-none rounded-xl border border-slate-200 bg-white px-3.5 py-3.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
-                >
-                  {cities.map((c) => (
-                    <option key={c.id} value={c.id}>
-                      {c.name}
-                    </option>
-                  ))}
-                  <option value={OTHER_VALUE}>Other (type manually)</option>
-                </select>
-                {cityId === OTHER_VALUE && (
-                  <input
-                    type="text"
-                    value={customCity}
-                    onChange={(e) => setCustomCity(e.target.value)}
-                    placeholder="Enter city"
-                    className="mt-2 w-full rounded-xl border border-slate-200 px-3.5 py-3 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
-                  />
-                )}
+                </div>
               </div>
             </div>
+          </section>
 
-            <div>
-              <label htmlFor="country" className="mb-1 block text-sm font-medium text-slate-700">
-                Country
-              </label>
-              <input
-                id="country"
-                type="text"
-                value="India"
-                disabled
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-3.5 text-sm text-slate-500"
+          <hr className="my-7 border-slate-100" />
+
+          {/* Property details */}
+          <section>
+            <div className="flex items-center gap-2.5">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-night-950 text-gold-300">
+                <MapPinIcon className="h-4 w-4" />
+              </span>
+              <h2 className="text-sm font-bold uppercase tracking-wide text-ink">
+                Property details
+              </h2>
+            </div>
+            <div className="mt-4 space-y-4">
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label htmlFor="houseNo" className={labelClass}>
+                    House No.
+                  </label>
+                  <input
+                    id="houseNo"
+                    type="text"
+                    value={houseNo}
+                    onChange={(e) => setHouseNo(e.target.value)}
+                    placeholder="B-204"
+                    className={inputClass}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="sector" className={labelClass}>
+                    Sector
+                  </label>
+                  <input
+                    id="sector"
+                    type="text"
+                    value={sector}
+                    onChange={(e) => setSector(e.target.value)}
+                    placeholder="Sector 62"
+                    className={inputClass}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label htmlFor="block" className={labelClass}>
+                    Block
+                  </label>
+                  <input
+                    id="block"
+                    type="text"
+                    value={block}
+                    onChange={(e) => setBlock(e.target.value)}
+                    placeholder="C"
+                    className={inputClass}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="projectName" className={labelClass}>
+                    Project / Society
+                  </label>
+                  <input
+                    id="projectName"
+                    type="text"
+                    value={projectName}
+                    onChange={(e) => setProjectName(e.target.value)}
+                    placeholder="Amrapali Sapphire"
+                    className={inputClass}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label htmlFor="state" className={labelClass}>
+                    State
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="state"
+                      value={stateId}
+                      onChange={(e) => setStateId(e.target.value)}
+                      disabled={locationsLoading}
+                      className={selectClass}
+                    >
+                      {states.map((s) => (
+                        <option key={s.id} value={s.id}>
+                          {s.name}
+                        </option>
+                      ))}
+                      <option value={OTHER_VALUE}>Other (type manually)</option>
+                    </select>
+                  </div>
+                  {stateId === OTHER_VALUE && (
+                    <input
+                      type="text"
+                      value={customState}
+                      onChange={(e) => setCustomState(e.target.value)}
+                      placeholder="Enter state"
+                      className={`mt-2 ${inputClass}`}
+                    />
+                  )}
+                </div>
+                <div>
+                  <label htmlFor="city" className={labelClass}>
+                    City
+                  </label>
+                  <select
+                    id="city"
+                    value={cityId}
+                    onChange={(e) => setCityId(e.target.value)}
+                    disabled={locationsLoading}
+                    className={selectClass}
+                  >
+                    {cities.map((c) => (
+                      <option key={c.id} value={c.id}>
+                        {c.name}
+                      </option>
+                    ))}
+                    <option value={OTHER_VALUE}>Other (type manually)</option>
+                  </select>
+                  {cityId === OTHER_VALUE && (
+                    <input
+                      type="text"
+                      value={customCity}
+                      onChange={(e) => setCustomCity(e.target.value)}
+                      placeholder="Enter city"
+                      className={`mt-2 ${inputClass}`}
+                    />
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="country" className={labelClass}>
+                  Country
+                </label>
+                <input
+                  id="country"
+                  type="text"
+                  value="India"
+                  disabled
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-3.5 text-sm text-slate-500"
+                />
+              </div>
+            </div>
+          </section>
+
+          <hr className="my-7 border-slate-100" />
+
+          {/* Photos */}
+          <section>
+            <div className="flex items-center gap-2.5">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-night-950 text-gold-300">
+                <CameraIcon className="h-4 w-4" />
+              </span>
+              <h2 className="text-sm font-bold uppercase tracking-wide text-ink">
+                Photos{" "}
+                <span className="font-medium normal-case text-slate-400">
+                  (optional)
+                </span>
+              </h2>
+            </div>
+            <div className="mt-4">
+              <PhotoUploader
+                draftId={draftId}
+                photos={photos}
+                onPhotosChange={setPhotos}
               />
             </div>
-          </fieldset>
-
-          <fieldset>
-            <legend className="mb-2 text-xs font-bold uppercase tracking-wide text-brand-500">
-              Photos (optional)
-            </legend>
-            <PhotoUploader
-              draftId={draftId}
-              photos={photos}
-              onPhotosChange={setPhotos}
-            />
-          </fieldset>
+          </section>
 
           {formError && (
-            <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">
+            <p className="mt-6 rounded-xl bg-red-50 px-3.5 py-3 text-sm text-red-600">
               {formError}
             </p>
           )}
@@ -361,13 +421,16 @@ export default function ListPropertyPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full rounded-xl bg-brand-600 py-4 text-sm font-bold text-white shadow-card transition active:scale-[0.98] disabled:opacity-60"
+            className="group mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-gold-300 py-4 text-sm font-bold text-night-950 shadow-glow transition hover:bg-gold-200 active:scale-[0.98] disabled:opacity-60"
           >
             {submitting ? "Submitting…" : "Submit Listing"}
+            {!submitting && (
+              <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-0.5" />
+            )}
           </button>
-          <p className="text-center text-[11px] text-slate-400">
-            By submitting, you agree to be contacted by our partner brokers
-            about your property.
+          <p className="mt-3 text-center text-[11px] text-slate-400">
+            By submitting, you agree to be contacted by our partner brokers about
+            your property.
           </p>
         </form>
       </main>
