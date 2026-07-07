@@ -32,7 +32,7 @@ type Inquiry = {
 const STATUSES = ["new", "contacted", "in_progress", "closed"] as const;
 
 const statusStyles: Record<string, string> = {
-  new: "bg-gold-100 text-gold-700 border-gold-200",
+  new: "bg-emerald-100 text-emerald-700 border-emerald-200",
   contacted: "bg-blue-50 text-blue-700 border-blue-200",
   in_progress: "bg-amber-50 text-amber-700 border-amber-200",
   closed: "bg-green-50 text-green-700 border-green-200",
@@ -182,14 +182,14 @@ export default function AdminPage() {
               <p className="font-display text-sm font-bold uppercase tracking-tight">
                 Seller Inquiries
               </p>
-              <p className="flex items-center gap-1 text-[11px] text-gold-300">
+              <p className="flex items-center gap-1 text-[11px] text-emerald-300">
                 <ShieldIcon className="h-3 w-3" /> {email}
               </p>
             </div>
           </div>
           <button
             onClick={logout}
-            className="rounded-full border border-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white/80 transition hover:border-gold-400 hover:text-gold-300"
+            className="rounded-full border border-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white/80 transition hover:border-emerald-400 hover:text-emerald-300"
           >
             Log out
           </button>
@@ -211,11 +211,11 @@ export default function AdminPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search name, phone, sector…"
-              className="w-full rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-sm focus:border-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-200 sm:w-64"
+              className="w-full rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-sm focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200 sm:w-64"
             />
             <button
               onClick={exportCsv}
-              className="shrink-0 rounded-lg bg-carbon-950 px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-gold-300 transition hover:bg-carbon-800"
+              className="shrink-0 rounded-lg bg-carbon-950 px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-emerald-300 transition hover:bg-carbon-800"
             >
               Export CSV
             </button>
@@ -276,7 +276,7 @@ export default function AdminPage() {
 
                   <div className="space-y-2.5 p-4">
                     <p className="flex items-start gap-2 text-sm text-slate-600">
-                      <MapPinIcon className="mt-0.5 h-4 w-4 shrink-0 text-gold-500" />
+                      <MapPinIcon className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
                       {addr || "No address provided"}
                     </p>
 
@@ -285,7 +285,7 @@ export default function AdminPage() {
                         href={`tel:${dial}`}
                         className="inline-flex items-center gap-1.5 rounded-lg bg-carbon-950 px-3 py-2 text-xs font-semibold text-white transition hover:bg-carbon-800"
                       >
-                        <PhoneIcon className="h-3.5 w-3.5 text-gold-300" />
+                        <PhoneIcon className="h-3.5 w-3.5 text-emerald-300" />
                         {i.country_dial_code} {i.phone}
                       </a>
                       <a

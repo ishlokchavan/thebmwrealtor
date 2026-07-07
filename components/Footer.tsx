@@ -29,7 +29,7 @@ export default function Footer() {
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-gold-400 hover:text-gold-300"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-emerald-400 hover:text-emerald-300"
                 aria-label="Instagram"
               >
                 <InstagramIcon className="h-[18px] w-[18px]" />
@@ -38,7 +38,7 @@ export default function Footer() {
                 href="https://wa.me/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-gold-400 hover:text-gold-300"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-emerald-400 hover:text-emerald-300"
                 aria-label="WhatsApp"
               >
                 <WhatsAppIcon className="h-[18px] w-[18px]" />
@@ -48,7 +48,7 @@ export default function Footer() {
 
           <div className="grid grid-cols-2 gap-10">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-300">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-300">
                 Company
               </p>
               <ul className="mt-4 space-y-2.5 text-sm text-white/60">
@@ -70,7 +70,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-300">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-300">
                 Get started
               </p>
               <ul className="mt-4 space-y-2.5 text-sm text-white/60">

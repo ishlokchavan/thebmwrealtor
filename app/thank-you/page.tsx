@@ -15,10 +15,10 @@ export default function ThankYouPage() {
       <main className="relative overflow-hidden bg-carbon-mesh">
         <div className="pointer-events-none absolute inset-0 tech-grid opacity-50" />
         <div className="pointer-events-none absolute inset-0 grain opacity-[0.1]" />
-        <div className="pointer-events-none absolute left-1/2 top-10 h-64 w-64 -translate-x-1/2 rounded-full bg-gold-500/25 blur-3xl" />
+        <div className="pointer-events-none absolute left-1/2 top-10 h-64 w-64 -translate-x-1/2 rounded-full bg-emerald-500/25 blur-3xl" />
 
         <div className="relative mx-auto flex min-h-[82vh] max-w-lg flex-col items-center justify-center px-4 py-16 text-center text-white">
-          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gold-500/15 text-gold-300 ring-1 ring-gold-400/40">
+          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-400/40">
             <CheckCircleIcon className="h-11 w-11" />
           </div>
           <span className="accent-line mt-6 block h-1 w-16 rounded-full" aria-hidden="true" />
@@ -36,7 +36,7 @@ export default function ThankYouPage() {
                 key={n.text}
                 className="flex items-center gap-3 overflow-hidden rounded-xl glass px-4 py-3.5"
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gold-400 text-carbon-950">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-500 text-white">
                   <n.icon className="h-4.5 w-4.5" />
                 </span>
                 <span className="text-sm text-white/85">{n.text}</span>
@@ -46,7 +46,7 @@ export default function ThankYouPage() {
 
           <Link
             href="/"
-            className="group mt-9 inline-flex items-center gap-2 rounded-full bg-gold-400 px-7 py-4 text-sm font-bold uppercase tracking-wide text-carbon-950 shadow-glow transition hover:bg-gold-300 active:scale-[0.98]"
+            className="group mt-9 inline-flex items-center gap-2 rounded-full bg-emerald-500 px-7 py-4 text-sm font-bold uppercase tracking-wide text-white shadow-glow transition hover:bg-emerald-600 active:scale-[0.98]"
           >
             Back to Home
             <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-0.5" />

@@ -8,35 +8,35 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        canvas: "#f6f4ef",
-        ink: "#14120d",
-        // Obsidian — warm near-black used for premium dark sections
+        canvas: "#f6f3ec",
+        ink: "#2b2a26",
+        // Warm charcoal / taupe neutrals for dark sections & text
         carbon: {
-          50: "#f3f1ea",
-          100: "#ded9cc",
-          200: "#c1b9a4",
-          300: "#9a8f78",
-          400: "#6f6552",
-          500: "#4e4738",
-          600: "#3a352a",
-          700: "#29251d",
-          800: "#1b1813",
-          900: "#12100c",
-          950: "#0b0a07",
+          50: "#f4f2ec",
+          100: "#e6e2d8",
+          200: "#cbc6b9",
+          300: "#a8a294",
+          400: "#837e72",
+          500: "#625e54",
+          600: "#4c4941",
+          700: "#3a3833",
+          800: "#2b2a26",
+          900: "#232220",
+          950: "#1a1917",
         },
-        // Gold — wealth accent + CTA
-        gold: {
-          50: "#fbf7ec",
-          100: "#f6edcf",
-          200: "#eeda9f",
-          300: "#e4c66d",
-          400: "#d4af37",
-          500: "#bd982f",
-          600: "#9c7826",
-          700: "#7c5d20",
-          800: "#634a1e",
-          900: "#523d1c",
-          950: "#2f210c",
+        // Emerald — the single accent colour
+        emerald: {
+          50: "#e9f6ef",
+          100: "#c9e9d7",
+          200: "#98d3b3",
+          300: "#63b98c",
+          400: "#329e69",
+          500: "#157a4d",
+          600: "#10633f",
+          700: "#0e5034",
+          800: "#0d402b",
+          900: "#0b3524",
+          950: "#052015",
         },
       },
       fontFamily: {
@@ -44,14 +44,14 @@ const config: Config = {
         display: ["var(--font-display)", "var(--font-sans)", "sans-serif"],
       },
       boxShadow: {
-        soft: "0 2px 8px -2px rgba(20, 18, 13, 0.08)",
-        card: "0 18px 45px -20px rgba(20, 18, 13, 0.4)",
-        glow: "0 18px 50px -16px rgba(212, 175, 55, 0.5)",
-        float: "0 30px 70px -28px rgba(11, 10, 7, 0.7)",
+        soft: "0 2px 8px -2px rgba(43, 42, 38, 0.08)",
+        card: "0 18px 45px -20px rgba(26, 25, 23, 0.35)",
+        glow: "0 18px 50px -16px rgba(21, 122, 77, 0.4)",
+        float: "0 30px 70px -28px rgba(26, 25, 23, 0.55)",
       },
       backgroundImage: {
         "carbon-mesh":
-          "radial-gradient(110% 90% at 12% 0%, rgba(212,175,55,0.14) 0%, transparent 55%), radial-gradient(120% 110% at 92% 8%, rgba(212,175,55,0.08) 0%, transparent 52%), linear-gradient(180deg, #12100c 0%, #0b0a07 100%)",
+          "radial-gradient(110% 90% at 12% 0%, rgba(21,122,77,0.16) 0%, transparent 55%), radial-gradient(120% 110% at 92% 8%, rgba(21,122,77,0.09) 0%, transparent 52%), linear-gradient(180deg, #232220 0%, #1a1917 100%)",
       },
       keyframes: {
         "fade-up": {

@@ -17,7 +17,7 @@ export default function Header() {
             <span className="block font-display text-[15px] font-bold uppercase tracking-tight text-white">
               The BMW Realtor
             </span>
-            <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-gold-300">
+            <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-300">
               Building Massive Wealth
             </span>
           </span>
@@ -28,14 +28,14 @@ export default function Header() {
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-gold-400 hover:text-gold-300"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-emerald-400 hover:text-emerald-300"
             aria-label="Follow on Instagram"
           >
             <InstagramIcon className="h-[18px] w-[18px]" />
           </a>
           <Link
             href="/list-property"
-            className="hidden rounded-full bg-gold-400 px-4 py-2 text-xs font-bold uppercase tracking-wide text-carbon-950 transition hover:bg-gold-300 sm:block"
+            className="hidden rounded-full bg-emerald-500 px-4 py-2 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-emerald-600 sm:block"
           >
             List Property
           </Link>

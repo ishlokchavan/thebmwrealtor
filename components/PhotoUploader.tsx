@@ -105,7 +105,7 @@ export default function PhotoUploader({
             type="button"
             onClick={() => inputRef.current?.click()}
             disabled={uploading}
-            className="flex aspect-square flex-col items-center justify-center gap-1.5 rounded-lg border-2 border-dashed border-slate-300 text-slate-400 transition hover:border-gold-400 hover:bg-gold-50 hover:text-gold-600 disabled:opacity-50"
+            className="flex aspect-square flex-col items-center justify-center gap-1.5 rounded-lg border-2 border-dashed border-slate-300 text-slate-400 transition hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-600 disabled:opacity-50"
           >
             <CameraIcon className="h-6 w-6" />
             <span className="text-[10px] font-semibold">

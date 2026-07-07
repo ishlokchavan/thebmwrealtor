@@ -32,7 +32,7 @@ export default function HowItWorks() {
       <div className="relative mx-auto max-w-6xl px-4">
         <div className="max-w-xl">
           <AccentBar />
-          <p className="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-gold-300">
+          <p className="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-emerald-300">
             The process
           </p>
           <h2 className="mt-2 font-display text-3xl font-extrabold uppercase tracking-tight sm:text-4xl">
@@ -46,7 +46,7 @@ export default function HowItWorks() {
               <div className="h-full overflow-hidden rounded-2xl glass p-6">
                 <span className="accent-line absolute left-0 top-0 h-1 w-full" aria-hidden="true" />
                 <div className="flex items-center justify-between pt-1">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gold-400 text-carbon-950">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500 text-white">
                     <step.icon className="h-6 w-6" />
                   </span>
                   <span className="font-display text-4xl font-extrabold text-white/15">
@@ -65,7 +65,7 @@ export default function HowItWorks() {
         <div className="mt-10">
           <Link
             href="/list-property"
-            className="group inline-flex items-center gap-2 rounded-full bg-gold-400 px-7 py-4 text-sm font-bold uppercase tracking-wide text-carbon-950 shadow-glow transition hover:bg-gold-300 active:scale-[0.98]"
+            className="group inline-flex items-center gap-2 rounded-full bg-emerald-500 px-7 py-4 text-sm font-bold uppercase tracking-wide text-white shadow-glow transition hover:bg-emerald-600 active:scale-[0.98]"
           >
             Start your free listing
             <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-0.5" />

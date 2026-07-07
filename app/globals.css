@@ -13,7 +13,7 @@ body {
 
 @layer base {
   ::selection {
-    background: rgba(212, 175, 55, 0.28);
+    background: rgba(21, 122, 77, 0.24);
   }
 }
 
@@ -33,28 +33,28 @@ body {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
   }
 
-  /* Premium gold accent bar */
+  /* Emerald accent bar — the single pop of colour */
   .accent-line {
     background: linear-gradient(
       90deg,
-      #9c7826 0%,
-      #e4c66d 45%,
-      #f6edcf 55%,
-      #bd982f 100%
+      #0e5034 0%,
+      #157a4d 45%,
+      #329e69 55%,
+      #10633f 100%
     );
   }
 
-  .text-gradient-gold {
-    background: linear-gradient(100deg, #e4c66d 0%, #d4af37 50%, #f6edcf 100%);
+  .text-gradient-emerald {
+    background: linear-gradient(100deg, #63b98c 0%, #329e69 50%, #cdeede 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  /* Subtle luxe grid */
+  /* Subtle neutral grid */
   .tech-grid {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     background-size: 46px 46px;
   }
 }

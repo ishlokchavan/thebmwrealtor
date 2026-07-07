@@ -39,7 +39,7 @@ export default function SkylineIllustration({ className }: { className?: string 
                   y={y + 10 + r * 24}
                   width="6"
                   height="9"
-                  fill={lit ? "#d4af37" : "#3a352a"}
+                  fill={lit ? "#e7e0cf" : "#3a3833"}
                   opacity={lit ? 0.95 : 0.5}
                 />
               );

@@ -13,24 +13,39 @@ import {
   PhoneIcon,
   ShieldIcon,
 } from "@/components/icons";
-import { DEFAULT_COUNTRY, type Country } from "@/lib/countries";
+import { COUNTRIES, DEFAULT_COUNTRY, type Country } from "@/lib/countries";
 import { supabase } from "@/lib/supabase";
 import type { CityRow, InquiryPhoto, StateRow } from "@/lib/types";
 
 const OTHER_VALUE = "__other__";
 
+// Client-side fallbacks so State / City always default to UP / Noida even if
+// the database is briefly unreachable or not yet seeded. Real DB rows (proper
+// UUIDs) take over automatically once they load.
+const FALLBACK_STATES: StateRow[] = [{ id: "__up__", name: "Uttar Pradesh" }];
+const FALLBACK_CITIES: CityRow[] = [
+  { id: "__noida__", name: "Noida", state_id: "__up__" },
+  { id: "__greater_noida__", name: "Greater Noida", state_id: "__up__" },
+];
+
+// A real DB id (not the "Other" sentinel and not a client-side fallback).
+const isRealId = (id: string) =>
+  id !== "" && id !== OTHER_VALUE && !id.startsWith("__");
+
 const inputClass =
-  "w-full rounded-lg border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink placeholder:text-slate-400 transition focus:border-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-200";
+  "w-full rounded-lg border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink placeholder:text-slate-400 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200";
 const selectClass =
-  "w-full appearance-none rounded-lg border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink transition focus:border-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-200";
+  "w-full appearance-none rounded-lg border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200";
 const labelClass = "mb-1.5 block text-sm font-medium text-slate-700";
 
 export default function ListPropertyPage() {
   const router = useRouter();
 
-  const [states, setStates] = useState<StateRow[]>([]);
-  const [cities, setCities] = useState<CityRow[]>([]);
-  const [locationsLoading, setLocationsLoading] = useState(true);
+  // Seed with UP / Noida immediately so the defaults always show; real DB rows
+  // replace these as soon as they load.
+  const [states, setStates] = useState<StateRow[]>(FALLBACK_STATES);
+  const [cities, setCities] = useState<CityRow[]>(FALLBACK_CITIES);
+  const [locationsLoading, setLocationsLoading] = useState(false);
 
   const [name, setName] = useState("");
   const [country, setCountry] = useState<Country>(DEFAULT_COUNTRY);
@@ -41,10 +56,11 @@ export default function ListPropertyPage() {
   const [block, setBlock] = useState("");
   const [projectName, setProjectName] = useState("");
 
-  const [stateId, setStateId] = useState<string>("");
+  const [stateId, setStateId] = useState<string>("__up__");
   const [customState, setCustomState] = useState("");
-  const [cityId, setCityId] = useState<string>("");
+  const [cityId, setCityId] = useState<string>("__noida__");
   const [customCity, setCustomCity] = useState("");
+  const [propertyCountry, setPropertyCountry] = useState("India");
 
   const draftId = useMemo(() => crypto.randomUUID(), []);
   const [photos, setPhotos] = useState<InquiryPhoto[]>([]);
@@ -58,13 +74,10 @@ export default function ListPropertyPage() {
         .from("states")
         .select("id,name")
         .order("name");
-      if (!error && data) {
-        setStates(data);
-        const up = data.find((s) => s.name.toLowerCase() === "uttar pradesh");
-        setStateId(up ? up.id : data[0]?.id ?? OTHER_VALUE);
-      } else {
-        setStateId(OTHER_VALUE);
-      }
+      const rows = !error && data && data.length > 0 ? data : FALLBACK_STATES;
+      setStates(rows);
+      const up = rows.find((s) => s.name.toLowerCase() === "uttar pradesh");
+      setStateId(up ? up.id : rows[0]?.id ?? OTHER_VALUE);
       setLocationsLoading(false);
     }
     loadStates();
@@ -76,15 +89,24 @@ export default function ListPropertyPage() {
         setCities([]);
         return;
       }
+      // Fallback state → use fallback cities (default Noida).
+      if (!isRealId(stateId)) {
+        setCities(FALLBACK_CITIES);
+        setCityId("__noida__");
+        return;
+      }
       const { data, error } = await supabase
         .from("cities")
         .select("id,name,state_id")
         .eq("state_id", stateId)
         .order("name");
-      if (!error && data) {
+      if (!error && data && data.length > 0) {
         setCities(data);
         const noida = data.find((c) => c.name.toLowerCase() === "noida");
-        setCityId(noida ? noida.id : data[0]?.id ?? OTHER_VALUE);
+        setCityId(noida ? noida.id : data[0].id);
+      } else {
+        setCities([]);
+        setCityId(OTHER_VALUE);
       }
     }
     loadCities();
@@ -127,11 +149,12 @@ export default function ListPropertyPage() {
         sector: sector.trim(),
         block: block.trim() || null,
         project_name: projectName.trim() || null,
-        city_id: cityId === OTHER_VALUE ? null : cityId,
+        // Only send real DB ids; fallback/"Other" selections store the name only.
+        city_id: isRealId(cityId) ? cityId : null,
         city_name: cityName,
-        state_id: stateId === OTHER_VALUE ? null : stateId,
+        state_id: isRealId(stateId) ? stateId : null,
         state_name: stateName,
-        country: "India",
+        country: propertyCountry,
       });
 
       if (insertError) {
@@ -182,10 +205,10 @@ export default function ListPropertyPage() {
           </p>
           <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-xs text-white/60">
             <span className="inline-flex items-center gap-1.5">
-              <ShieldIcon className="h-4 w-4 text-gold-300" /> Private &amp; secure
+              <ShieldIcon className="h-4 w-4 text-emerald-300" /> Private &amp; secure
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <PhoneIcon className="h-4 w-4 text-gold-300" /> Verified brokers only
+              <PhoneIcon className="h-4 w-4 text-emerald-300" /> Verified brokers only
             </span>
           </div>
         </div>
@@ -199,7 +222,7 @@ export default function ListPropertyPage() {
           {/* Your details */}
           <section className="scroll-mt-24">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-carbon-950 text-gold-300">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-carbon-950 text-emerald-300">
                 <PhoneIcon className="h-4 w-4" />
               </span>
               <h2 className="text-sm font-bold uppercase tracking-wide text-ink">
@@ -234,7 +257,7 @@ export default function ListPropertyPage() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value.replace(/[^\d\s]/g, ""))}
                     placeholder="98765 43210"
-                    className="w-full rounded-r-lg border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink placeholder:text-slate-400 transition focus:border-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-200"
+                    className="w-full rounded-r-lg border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink placeholder:text-slate-400 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200"
                     required
                   />
                 </div>
@@ -247,7 +270,7 @@ export default function ListPropertyPage() {
           {/* Property details */}
           <section className="scroll-mt-24">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-carbon-950 text-gold-300">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-carbon-950 text-emerald-300">
                 <MapPinIcon className="h-4 w-4" />
               </span>
               <h2 className="text-sm font-bold uppercase tracking-wide text-ink">
@@ -379,13 +402,18 @@ export default function ListPropertyPage() {
                 <label htmlFor="country" className={labelClass}>
                   Country
                 </label>
-                <input
+                <select
                   id="country"
-                  type="text"
-                  value="India"
-                  disabled
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-3.5 text-sm text-slate-500"
-                />
+                  value={propertyCountry}
+                  onChange={(e) => setPropertyCountry(e.target.value)}
+                  className={selectClass}
+                >
+                  {COUNTRIES.map((c) => (
+                    <option key={c.iso} value={c.name}>
+                      {c.flag} {c.name}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           </section>
@@ -395,7 +423,7 @@ export default function ListPropertyPage() {
           {/* Photos */}
           <section className="scroll-mt-24">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-carbon-950 text-gold-300">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-carbon-950 text-emerald-300">
                 <CameraIcon className="h-4 w-4" />
               </span>
               <h2 className="text-sm font-bold uppercase tracking-wide text-ink">
@@ -423,7 +451,7 @@ export default function ListPropertyPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="group mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-gold-400 py-4 text-sm font-bold uppercase tracking-wide text-carbon-950 shadow-glow transition hover:bg-gold-300 active:scale-[0.98] disabled:opacity-60"
+            className="group mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-emerald-500 py-4 text-sm font-bold uppercase tracking-wide text-white shadow-glow transition hover:bg-emerald-600 active:scale-[0.98] disabled:opacity-60"
           >
             {submitting ? "Submitting…" : "Submit Listing"}
             {!submitting && (

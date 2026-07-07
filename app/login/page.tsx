@@ -65,14 +65,14 @@ export default function LoginPage() {
             <span className="block font-display text-base font-bold uppercase tracking-tight">
               The BMW Realtor
             </span>
-            <span className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-300">
+            <span className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-300">
               Building Massive Wealth
             </span>
           </span>
         </Link>
 
         <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl sm:p-8">
-          <div className="flex items-center gap-2 text-gold-300">
+          <div className="flex items-center gap-2 text-emerald-300">
             <ShieldIcon className="h-5 w-5" />
             <h1 className="font-display text-lg font-bold uppercase tracking-tight">
               Admin login
@@ -97,7 +97,7 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
-                  className="w-full rounded-lg border border-white/15 bg-white/5 px-3.5 py-3 text-sm text-white placeholder:text-white/30 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-400/30"
+                  className="w-full rounded-lg border border-white/15 bg-white/5 px-3.5 py-3 text-sm text-white placeholder:text-white/30 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/30"
                   required
                 />
               </div>
@@ -112,7 +112,7 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••"
-                  className="w-full rounded-lg border border-white/15 bg-white/5 px-3.5 py-3 text-sm text-white placeholder:text-white/30 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-400/30"
+                  className="w-full rounded-lg border border-white/15 bg-white/5 px-3.5 py-3 text-sm text-white placeholder:text-white/30 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/30"
                   required
                 />
               </div>
@@ -126,7 +126,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="group flex w-full items-center justify-center gap-2 rounded-full bg-gold-400 py-3.5 text-sm font-bold uppercase tracking-wide text-carbon-950 shadow-glow transition hover:bg-gold-300 active:scale-[0.98] disabled:opacity-60"
+                className="group flex w-full items-center justify-center gap-2 rounded-full bg-emerald-500 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow-glow transition hover:bg-emerald-600 active:scale-[0.98] disabled:opacity-60"
               >
                 {loading ? "Signing in…" : "Sign in"}
                 {!loading && <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-0.5" />}
