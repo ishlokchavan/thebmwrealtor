@@ -33,6 +33,15 @@ const FALLBACK_CITIES: CityRow[] = [
 const isRealId = (id: string) =>
   id !== "" && id !== OTHER_VALUE && !id.startsWith("__");
 
+const PROPERTY_TYPES = [
+  "Apartment",
+  "Villa",
+  "Independent House",
+  "Builder Floor",
+  "Plot",
+  "Commercial",
+];
+
 const inputClass =
   "w-full rounded-lg border border-slate-200 bg-white px-3.5 py-3.5 text-sm text-ink placeholder:text-slate-400 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200";
 const selectClass =
@@ -52,6 +61,7 @@ export default function ListPropertyPage() {
   const [country, setCountry] = useState<Country>(DEFAULT_COUNTRY);
   const [phone, setPhone] = useState("");
 
+  const [propertyType, setPropertyType] = useState("Apartment");
   const [houseNo, setHouseNo] = useState("");
   const [sector, setSector] = useState("");
   const [block, setBlock] = useState("");
@@ -146,6 +156,7 @@ export default function ListPropertyPage() {
         country_dial_code: country.dialCode,
         country_iso: country.iso,
         phone: phone.trim(),
+        property_type: propertyType,
         house_no: houseNo.trim() || null,
         sector: sector.trim(),
         block: block.trim() || null,
@@ -187,6 +198,7 @@ export default function ListPropertyPage() {
         "",
         `Name: ${name.trim()}`,
         `Phone: ${country.dialCode} ${phone.trim()}`,
+        `Type: ${propertyType}`,
         addressLine ? `Property: ${addressLine}` : "",
         `Location: ${cityName}, ${stateName}, ${propertyCountry}`,
         photos.length ? `Photos: ${photos.length} attached on the website` : "",
@@ -307,6 +319,24 @@ export default function ListPropertyPage() {
               </h2>
             </div>
             <div className="mt-4 space-y-4">
+              <div>
+                <label htmlFor="propertyType" className={labelClass}>
+                  Property type
+                </label>
+                <select
+                  id="propertyType"
+                  value={propertyType}
+                  onChange={(e) => setPropertyType(e.target.value)}
+                  className={selectClass}
+                >
+                  {PROPERTY_TYPES.map((t) => (
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label htmlFor="houseNo" className={labelClass}>

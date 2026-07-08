@@ -18,6 +18,7 @@ type Inquiry = {
   name: string;
   country_dial_code: string;
   phone: string;
+  property_type: string | null;
   house_no: string | null;
   sector: string | null;
   block: string | null;
@@ -119,6 +120,7 @@ export default function AdminPage() {
     const headers = [
       "Name",
       "Phone",
+      "Type",
       "House No",
       "Block",
       "Sector",
@@ -131,6 +133,7 @@ export default function AdminPage() {
     const rows = inquiries.map((i) => [
       i.name,
       `${i.country_dial_code} ${i.phone}`,
+      i.property_type ?? "",
       i.house_no ?? "",
       i.block ?? "",
       i.sector ?? "",
@@ -254,7 +257,14 @@ export default function AdminPage() {
                 >
                   <div className="flex items-start justify-between gap-3 border-b border-slate-100 p-4">
                     <div>
-                      <p className="font-bold text-ink">{i.name}</p>
+                      <div className="flex items-center gap-2">
+                        <p className="font-bold text-ink">{i.name}</p>
+                        {i.property_type && (
+                          <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-700">
+                            {i.property_type}
+                          </span>
+                        )}
+                      </div>
                       <p className="text-xs text-slate-400">
                         {new Date(i.created_at).toLocaleString()}
                       </p>

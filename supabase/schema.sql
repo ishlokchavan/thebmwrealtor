@@ -41,6 +41,7 @@ create table if not exists inquiries (
   country_dial_code text not null default '+91',
   country_iso text not null default 'IN',
   phone text not null,
+  property_type text not null default 'Apartment',
   house_no text,
   sector text,
   block text,
@@ -53,6 +54,9 @@ create table if not exists inquiries (
   status text not null default 'new' check (status in ('new', 'contacted', 'in_progress', 'closed')),
   created_at timestamptz not null default now()
 );
+
+-- Safe for existing databases: add the column if the table already existed.
+alter table inquiries add column if not exists property_type text not null default 'Apartment';
 
 create index if not exists inquiries_created_at_idx on inquiries (created_at desc);
 
