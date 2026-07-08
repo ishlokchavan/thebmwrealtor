@@ -1,22 +1,23 @@
 import Link from "next/link";
 import AccentBar from "./AccentBar";
+import Reveal from "./Reveal";
 import { ArrowRightIcon, CameraIcon, HomeIcon, UsersIcon } from "./icons";
 
 const steps = [
   {
     icon: HomeIcon,
     title: "Share your property",
-    desc: "Fill a 60-second form with your property and contact details. Add photos to stand out (optional).",
+    desc: "A 60-second form. Photos optional.",
   },
   {
     icon: UsersIcon,
     title: "We match top brokers",
-    desc: "Your listing is routed to the top 10 verified brokers who actively work in your sector.",
+    desc: "Routed to the 10 brokers in your sector.",
   },
   {
     icon: CameraIcon,
     title: "Close with confidence",
-    desc: "Brokers bring serious buyers, arrange visits, and help you close — usually within 60 days*.",
+    desc: "Real buyers, visits, sold in ~60 days*.",
   },
 ];
 
@@ -30,7 +31,7 @@ export default function HowItWorks() {
       <div className="pointer-events-none absolute inset-0 grain opacity-[0.1]" />
 
       <div className="relative mx-auto max-w-6xl px-4">
-        <div className="max-w-xl">
+        <Reveal className="max-w-xl">
           <AccentBar />
           <p className="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-emerald-300">
             The process
@@ -38,15 +39,15 @@ export default function HowItWorks() {
           <h2 className="mt-2 font-display text-3xl font-extrabold uppercase tracking-tight sm:text-4xl">
             Three steps to sold
           </h2>
-        </div>
+        </Reveal>
 
         <ol className="relative mt-12 grid gap-6 sm:grid-cols-3">
           {steps.map((step, i) => (
-            <li key={step.title} className="relative">
-              <div className="h-full overflow-hidden rounded-2xl glass p-6">
+            <Reveal as="li" key={step.title} delay={i * 120} className="relative">
+              <div className="group h-full overflow-hidden rounded-2xl glass p-6 transition hover:-translate-y-1">
                 <span className="accent-line absolute left-0 top-0 h-1 w-full" aria-hidden="true" />
                 <div className="flex items-center justify-between pt-1">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500 text-white">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500 text-white transition-transform duration-300 group-hover:scale-110">
                     <step.icon className="h-6 w-6" />
                   </span>
                   <span className="font-display text-4xl font-extrabold text-white/15">
@@ -58,19 +59,19 @@ export default function HowItWorks() {
                   {step.desc}
                 </p>
               </div>
-            </li>
+            </Reveal>
           ))}
         </ol>
 
-        <div className="mt-10">
+        <Reveal className="mt-10">
           <Link
             href="/list-property"
-            className="group inline-flex items-center gap-2 rounded-full bg-emerald-500 px-7 py-4 text-sm font-bold uppercase tracking-wide text-white shadow-glow transition hover:bg-emerald-600 active:scale-[0.98]"
+            className="group inline-flex items-center gap-2 rounded-full bg-emerald-500 px-7 py-4 text-sm font-bold uppercase tracking-wide text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-emerald-600 active:scale-[0.98]"
           >
             Start your free listing
-            <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-0.5" />
+            <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" />
           </Link>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

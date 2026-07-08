@@ -15,6 +15,7 @@ import {
 } from "@/components/icons";
 import { COUNTRIES, DEFAULT_COUNTRY, type Country } from "@/lib/countries";
 import { supabase } from "@/lib/supabase";
+import { whatsappUrl } from "@/lib/site";
 import type { CityRow, InquiryPhoto, StateRow } from "@/lib/types";
 
 const OTHER_VALUE = "__other__";
@@ -169,6 +170,34 @@ export default function ListPropertyPage() {
           }))
         );
         if (photosError) throw new Error(photosError.message);
+      }
+
+      // Prefill a WhatsApp message to the business so the seller can send
+      // their details in one tap. Opened from the thank-you page.
+      const addressLine = [
+        houseNo.trim(),
+        block.trim() ? `Block ${block.trim()}` : "",
+        sector.trim(),
+        projectName.trim(),
+      ]
+        .filter(Boolean)
+        .join(", ");
+      const message = [
+        "Hi, I'd like to list my property with The BMW Realtor.",
+        "",
+        `Name: ${name.trim()}`,
+        `Phone: ${country.dialCode} ${phone.trim()}`,
+        addressLine ? `Property: ${addressLine}` : "",
+        `Location: ${cityName}, ${stateName}, ${propertyCountry}`,
+        photos.length ? `Photos: ${photos.length} attached on the website` : "",
+        "",
+        "Please connect me with your top brokers.",
+      ]
+        .filter((l) => l !== "")
+        .join("\n");
+
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("bmw_wa_url", whatsappUrl(message));
       }
 
       router.push("/thank-you");

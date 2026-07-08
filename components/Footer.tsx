@@ -1,10 +1,7 @@
 import Link from "next/link";
 import Logo from "./Logo";
 import { InstagramIcon, WhatsAppIcon } from "./icons";
-
-const INSTAGRAM_URL =
-  process.env.NEXT_PUBLIC_INSTAGRAM_URL ??
-  "https://www.instagram.com/thebmwrealtor.noida/";
+import { BUSINESS_WHATSAPP, INSTAGRAM_URL } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -35,7 +32,7 @@ export default function Footer() {
                 <InstagramIcon className="h-[18px] w-[18px]" />
               </a>
               <a
-                href="https://wa.me/"
+                href={`https://wa.me/${BUSINESS_WHATSAPP}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-emerald-400 hover:text-emerald-300"

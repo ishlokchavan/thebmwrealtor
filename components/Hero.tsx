@@ -1,15 +1,32 @@
 import Link from "next/link";
+import CountUp from "./CountUp";
+import Photo from "./Photo";
 import PropertyCard from "./PropertyCard";
 import SkylineIllustration from "./SkylineIllustration";
+import { IMAGES } from "@/lib/site";
 import { ArrowRightIcon, StarIcon } from "./icons";
+
+const stats: [number, string, string][] = [
+  [60, "", "days* to sell"],
+  [10, "", "top brokers"],
+  [0, "", "brokerage"],
+];
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-carbon-mesh text-white">
-      <div className="pointer-events-none absolute inset-0 tech-grid opacity-60" />
+    <section className="relative overflow-hidden bg-carbon-950 text-white">
+      {/* Real photo layer (loads on the live site; gradient shows if it fails) */}
+      <Photo
+        src={IMAGES.heroExterior}
+        alt="Modern residential towers in Noida at golden hour"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-40"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-carbon-mesh opacity-90" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-carbon-950 via-carbon-950/70 to-carbon-950/30" />
+      <div className="pointer-events-none absolute inset-0 tech-grid opacity-50" />
       <div className="pointer-events-none absolute inset-0 grain opacity-[0.12]" />
       <SkylineIllustration className="absolute inset-x-0 bottom-0 h-52 w-full opacity-90" />
-      <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-emerald-500/25 blur-3xl" />
+      <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 animate-float rounded-full bg-emerald-500/25 blur-3xl" />
       <div className="pointer-events-none absolute -right-16 top-1/3 h-64 w-64 rounded-full bg-emerald-700/30 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl px-4 pb-24 pt-10 sm:pt-14 lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-10 lg:pb-28">
@@ -23,25 +40,24 @@ export default function Hero() {
           </div>
 
           <h1 className="mt-5 font-display text-[2.7rem] font-extrabold uppercase leading-[0.98] tracking-tight sm:text-[4.2rem]">
-            Sell your property in{" "}
+            Sell in{" "}
             <span className="text-gradient-emerald">60 days</span>
             <span className="align-super text-2xl text-emerald-300">*</span>
           </h1>
 
-          <p className="mt-5 max-w-md text-base leading-relaxed text-white/70 sm:text-lg">
-            List once and get connected with the{" "}
-            <span className="font-semibold text-white">top 10 brokers of Noida</span>
-            . Verified buyers, a faster close, and the best value for your
-            property.
+          <p className="mt-4 max-w-sm text-base leading-relaxed text-white/70 sm:text-lg">
+            Matched with Noida&apos;s{" "}
+            <span className="font-semibold text-white">top 10 brokers</span>. Free
+            to list.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
               href="/list-property"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-7 py-4 text-sm font-bold uppercase tracking-wide text-white shadow-glow transition hover:bg-emerald-600 active:scale-[0.98]"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-7 py-4 text-sm font-bold uppercase tracking-wide text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-emerald-600 active:scale-[0.98]"
             >
               List Your Property — Free
-              <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-0.5" />
+              <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" />
             </Link>
             <a
               href="#how-it-works"
@@ -52,13 +68,11 @@ export default function Hero() {
           </div>
 
           <div className="mt-9 grid max-w-md grid-cols-3 divide-x divide-white/10 border-y border-white/10 py-4">
-            {[
-              ["60", "days* avg. close"],
-              ["10", "elite brokers"],
-              ["0", "brokerage to list"],
-            ].map(([n, l]) => (
+            {stats.map(([n, , l]) => (
               <div key={l} className="px-2 text-center first:pl-0">
-                <p className="font-display text-2xl font-extrabold text-white">{n}</p>
+                <p className="font-display text-2xl font-extrabold text-white">
+                  <CountUp to={n} />
+                </p>
                 <p className="mt-0.5 text-[11px] uppercase tracking-wide leading-tight text-white/50">
                   {l}
                 </p>
@@ -81,7 +95,9 @@ export default function Hero() {
                   ))}
                 </span>
                 <p className="text-xs leading-tight text-white/80">
-                  <span className="font-bold text-white">240+ owners</span>
+                  <span className="font-bold text-white">
+                    <CountUp to={240} duration={1600} />+ owners
+                  </span>
                   <br /> listed this month
                 </p>
               </div>

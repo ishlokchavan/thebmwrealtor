@@ -1,3 +1,5 @@
+import Photo from "./Photo";
+import { IMAGES } from "@/lib/site";
 import { MapPinIcon, StarIcon } from "./icons";
 
 export default function PropertyCard({ className }: { className?: string }) {
@@ -15,22 +17,12 @@ export default function PropertyCard({ className }: { className?: string }) {
                   "radial-gradient(120% 100% at 20% 0%, #2f4a3d 0%, transparent 60%), linear-gradient(160deg, #232220 0%, #1a1917 100%)",
               }}
             />
-            <svg viewBox="0 0 280 100" className="absolute bottom-0 left-0 w-full" aria-hidden="true">
-              {[
-                [10, 55, 26, 45],
-                [40, 38, 22, 62],
-                [66, 62, 20, 38],
-                [90, 26, 28, 74],
-                [122, 48, 22, 52],
-                [148, 60, 20, 40],
-                [172, 32, 26, 68],
-                [202, 52, 22, 48],
-                [228, 40, 24, 60],
-                [256, 58, 18, 42],
-              ].map(([x, y, w, h], i) => (
-                <rect key={i} x={x} y={y} width={w} height={h} rx="1" fill="#1a1917" opacity={0.7 + (i % 2) * 0.2} />
-              ))}
-            </svg>
+            <Photo
+              src={IMAGES.heroExterior}
+              alt="Property in Noida"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-carbon-950/50 to-transparent" />
             <span className="absolute left-3 top-3 rounded bg-emerald-500 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
               For Sale
             </span>
